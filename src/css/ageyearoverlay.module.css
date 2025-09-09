@@ -1,0 +1,60 @@
+:root{
+  --rich-gold:#C3A66A;
+  --warm-bronze:#A07837;
+  --pearl-white:#FFFFFF;
+  --soft-champagne:#F7EFE2;
+  --satin-taupe:#B3A393;
+  --deep-charcoal:#333333;
+  --gold-grad:linear-gradient(135deg,var(--rich-gold) 0%,var(--warm-bronze) 100%);
+}
+
+.backdrop{
+  position:fixed; inset:0; z-index:9999;
+  display:grid; place-items:center; padding:1rem;
+  background:
+    radial-gradient(100% 70% at 20% 10%, rgba(195,166,106,.12) 0%, transparent 60%),
+    radial-gradient(100% 70% at 80% 90%, rgba(160,120,55,.10) 0%, transparent 60%),
+    var(--soft-champagne);
+}
+
+.card{
+  width:min(520px,92vw);
+  background:linear-gradient(135deg, rgba(255,255,255,.95), rgba(247,239,226,.92));
+  color:var(--deep-charcoal);
+  border-radius:20px;
+  box-shadow:0 24px 64px rgba(0,0,0,.18), 0 0 0 1px rgba(195,166,106,.25);
+  padding:2rem; text-align:center; position:relative;
+}
+
+.title{
+  margin:0; font-weight:900; font-size:clamp(1.6rem,4vw,2.2rem);
+  background:var(--gold-grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+
+.subtitle{ margin:.5rem 0 1.25rem; color:var(--warm-bronze); font-weight:600; }
+
+.form{ display:grid; gap:1rem; }
+.label{ display:grid; gap:.5rem; text-align:left; font-weight:700; color:var(--deep-charcoal); }
+
+.input{
+  width:100%; padding:.9rem 1rem; border-radius:12px; outline:none;
+  border:1px solid rgba(195,166,106,.35); background:rgba(255,255,255,.9);
+  color:var(--deep-charcoal); font-weight:700; letter-spacing:.05em;
+}
+.input:focus{ border-color:var(--rich-gold); box-shadow:0 0 0 4px rgba(195,166,106,.18); }
+
+.error{ color:#b00020; font-weight:800; }
+
+.cta{
+  border:none; padding:.9rem 1.2rem; border-radius:14px; cursor:pointer;
+  background:var(--gold-grad); color:var(--pearl-white); font-weight:900;
+  box-shadow:0 12px 34px rgba(195,166,106,.35); transition:transform .15s, box-shadow .2s;
+}
+.cta:hover{ transform:translateY(-1px); box-shadow:0 18px 44px rgba(195,166,106,.45); }
+
+.note{ margin-top:.75rem; color:var(--satin-taupe); font-size:.85rem; }
+
+@media (max-width:480px){
+  .card{ padding:1.25rem; }
+  .input{ padding:.75rem .9rem; }
+}

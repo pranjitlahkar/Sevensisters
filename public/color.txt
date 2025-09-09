@@ -1,0 +1,6 @@
+Rich Metallic Gold	#C3A66A	For key highlights, headings, buttons, and accent borders.
+Warm Bronze	#A07837	Secondary accents, icons, subheadings, and subtle effects.
+Pearl White	#FFFFFF	Backgrounds—keep site clean and elegant.
+Soft Champagne	#F7EFE2	Section backgrounds and cards for warmth and richness.
+Satin Taupe	#B3A393	Text, menu, or sidebars; for softer contrast.
+Deep Charcoal	#333333	Body text, footer, or for depth in design elements.

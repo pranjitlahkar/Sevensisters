@@ -1,0 +1,1237 @@
+/* ===== MILESTONES SECTION - ULTIMATE EXCELLENCE ===== */
+
+/* Design Variables */
+.milestonesSection {
+  --rich-gold: #C3A66A;
+  --warm-bronze: #A07837;
+  --pearl-white: #FFFFFF;
+  --soft-champagne: #F7EFE2;
+  --satin-taupe: #B3A393;
+  --deep-charcoal: #333333;
+  --gold-gradient: linear-gradient(135deg, var(--rich-gold) 0%, var(--warm-bronze) 50%, var(--rich-gold) 100%);
+  --champagne-gradient: linear-gradient(135deg, var(--pearl-white) 0%, var(--soft-champagne) 30%, var(--pearl-white) 70%);
+  --shadow-ethereal: 0 20px 60px rgba(195, 166, 106, 0.15);
+  --shadow-dramatic: 0 30px 80px rgba(195, 166, 106, 0.25);
+  --shadow-mystical: 0 50px 120px rgba(51, 51, 51, 0.2);
+  --glow-soft: 0 0 30px rgba(195, 166, 106, 0.4);
+  --glow-intense: 0 0 60px rgba(195, 166, 106, 0.8);
+  --transition-silk: 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+  --transition-elegant: 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-quick: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+}
+
+/* ===== MAIN SECTION ===== */
+.milestonesSection {
+  position: relative;
+  padding: var(--spacing-3xl) 0;
+  background: 
+    linear-gradient(180deg, 
+      var(--pearl-white) 0%, 
+      var(--soft-champagne) 30%, 
+      var(--pearl-white) 70%, 
+      var(--soft-champagne) 100%);
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* ===== ARTISTIC BACKGROUND ===== */
+.backgroundElements {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.backgroundLayer1 {
+  position: absolute;
+  inset: -15%;
+  background: 
+    conic-gradient(from 45deg at 25% 25%,
+      rgba(195, 166, 106, 0.08) 0deg,
+      transparent 90deg,
+      rgba(160, 120, 55, 0.05) 180deg,
+      transparent 270deg,
+      rgba(247, 239, 226, 0.4) 360deg),
+    radial-gradient(ellipse 70% 50% at 75% 75%, rgba(195, 166, 106, 0.06) 0%, transparent 70%);
+  animation: backgroundSpin 30s linear infinite;
+  will-change: transform;
+}
+
+@keyframes backgroundSpin {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.6; }
+  50% { transform: rotate(180deg) scale(1.1); opacity: 0.8; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.6; }
+}
+
+.backgroundLayer2 {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(45deg, transparent 20%, rgba(195, 166, 106, 0.03) 50%, transparent 80%),
+    linear-gradient(-45deg, transparent 20%, rgba(160, 120, 55, 0.02) 50%, transparent 80%),
+    radial-gradient(circle at 50% 50%, rgba(247, 239, 226, 0.5) 0%, transparent 60%);
+  animation: layerFlow 25s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes layerFlow {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg); 
+    opacity: 0.4;
+  }
+  33% { 
+    transform: translate(-40px, 20px) rotate(2deg); 
+    opacity: 0.6;
+  }
+  66% { 
+    transform: translate(20px, -30px) rotate(-1deg); 
+    opacity: 0.5;
+  }
+}
+
+.timelineBackground {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.timelinePath {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  bottom: 10%;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--rich-gold) 10%,
+    var(--warm-bronze) 50%,
+    var(--rich-gold) 90%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  box-shadow: 
+    0 0 20px rgba(195, 166, 106, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.8);
+  animation: pathGlow 4s ease-in-out infinite;
+}
+
+@keyframes pathGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(195, 166, 106, 0.6),
+      inset 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 40px rgba(195, 166, 106, 1),
+      inset 0 0 20px rgba(255, 255, 255, 1);
+    transform: translateX(-50%) scaleY(1.02);
+  }
+}
+
+.floatingOrb {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--rich-gold);
+  border-radius: 50%;
+  left: var(--x);
+  top: var(--y);
+  animation: 
+    orbFloat var(--duration) ease-in-out infinite var(--delay),
+    orbGlow 6s ease-in-out infinite var(--delay);
+  box-shadow: var(--glow-soft);
+}
+
+@keyframes orbFloat {
+  0%, 100% { 
+    transform: translateY(0px) scale(1); 
+    opacity: 0.3;
+  }
+  25% { 
+    transform: translateY(-80px) scale(1.8); 
+    opacity: 1;
+  }
+  50% { 
+    transform: translateY(-40px) scale(0.6); 
+    opacity: 0.5;
+  }
+  75% { 
+    transform: translateY(-100px) scale(1.4); 
+    opacity: 0.8;
+  }
+}
+
+@keyframes orbGlow {
+  0%, 100% { 
+    box-shadow: var(--glow-soft);
+  }
+  50% { 
+    box-shadow: var(--glow-intense);
+  }
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+}
+
+/* ===== SECTION HEADER ===== */
+.sectionHeader {
+  text-align: center;
+  animation: headerEmerge 2.5s var(--transition-silk) both;
+}
+
+@keyframes headerEmerge {
+  0% { 
+    opacity: 0; 
+    transform: translateY(100px) scale(0.8); 
+    filter: blur(15px);
+  }
+  40% { 
+    opacity: 0.6; 
+    transform: translateY(40px) scale(0.9); 
+    filter: blur(5px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+    filter: blur(0);
+  }
+}
+
+.headerContent {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.journeyBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background: 
+    linear-gradient(135deg,
+      rgba(195, 166, 106, 0.9) 0%,
+      rgba(160, 120, 55, 0.8) 50%,
+      rgba(195, 166, 106, 0.9) 100%);
+  color: var(--pearl-white);
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  box-shadow: var(--shadow-dramatic);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  animation: badgeFloat 5s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.journeyBadge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: badgeShimmer 3s ease-in-out infinite;
+}
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes badgeShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.sectionTitle {
+  font-size: clamp(3.5rem, 7vw, 8rem);
+  font-weight: 900;
+  line-height: 0.85;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.titleMain {
+  background: var(--gold-gradient);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: 
+    titleShimmer 6s ease-in-out infinite,
+    titleMagnify 10s ease-in-out infinite;
+  display: block;
+  position: relative;
+}
+
+.titleSub {
+  font-size: 0.5em;
+  color: var(--warm-bronze);
+  font-weight: 600;
+  font-style: italic;
+  opacity: 0.9;
+  animation: 
+    subtitleGlow 8s ease-in-out infinite,
+    subtitleSway 12s ease-in-out infinite;
+  display: block;
+}
+
+.titleYear {
+  font-size: 0.3em;
+  color: var(--satin-taupe);
+  font-weight: 800;
+  font-style: normal;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  display: block;
+  margin-top: var(--spacing-sm);
+}
+
+@keyframes titleShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes titleMagnify {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes subtitleGlow {
+  0%, 100% { opacity: 0.9; color: var(--warm-bronze); }
+  50% { opacity: 1; color: var(--rich-gold); }
+}
+
+@keyframes subtitleSway {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(4px); }
+}
+
+.titleDecoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl);
+  margin: var(--spacing-xl) 0;
+}
+
+.decorLine {
+  width: 120px;
+  height: 3px;
+  background: var(--gold-gradient);
+  border-radius: 2px;
+  position: relative;
+  animation: lineExpansion 6s ease-in-out infinite;
+}
+
+.decorLine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  animation: lineGlide 4s ease-in-out infinite;
+}
+
+@keyframes lineExpansion {
+  0%, 100% { 
+    transform: scaleX(1); 
+    opacity: 0.8;
+    box-shadow: none;
+  }
+  50% { 
+    transform: scaleX(1.4); 
+    opacity: 1;
+    box-shadow: var(--glow-soft);
+  }
+}
+
+@keyframes lineGlide {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}
+
+.decorOrb {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbCore {
+  width: 20px;
+  height: 20px;
+  background: var(--rich-gold);
+  border-radius: 50%;
+  box-shadow: var(--glow-intense);
+  animation: coreRotate 4s linear infinite;
+  position: relative;
+  z-index: 2;
+}
+
+.orbRing {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--warm-bronze);
+  border-radius: 50%;
+  animation: ringRotate 6s linear infinite reverse;
+  opacity: 0.7;
+}
+
+@keyframes coreRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes ringRotate {
+  0% { transform: rotate(0deg); opacity: 0.7; }
+  100% { transform: rotate(360deg); opacity: 0.3; }
+}
+
+.sectionDescription {
+  font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+  line-height: 1.9;
+  color: var(--deep-charcoal);
+  margin: 0;
+  text-align: center;
+  opacity: 0.9;
+  max-width: 700px;
+  font-style: italic;
+}
+
+/* ===== TIMELINE CONTAINER ===== */
+.timelineContainer {
+  position: relative;
+  padding: var(--spacing-3xl) 0;
+}
+
+.timelineTrack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xl);
+  align-items: center;
+}
+
+.progressLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: 
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--rich-gold) 5%,
+      var(--warm-bronze) 50%,
+      var(--rich-gold) 95%,
+      transparent 100%
+    );
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 
+    0 0 30px rgba(195, 166, 106, 0.8),
+    inset 0 0 15px rgba(255, 255, 255, 0.9);
+  animation: progressPulse 5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes progressPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 30px rgba(195, 166, 106, 0.8),
+      inset 0 0 15px rgba(255, 255, 255, 0.9);
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 50px rgba(195, 166, 106, 1),
+      inset 0 0 25px rgba(255, 255, 255, 1);
+    transform: translateX(-50%) scaleY(1.01);
+  }
+}
+
+/* ===== MILESTONE ITEMS ===== */
+.milestoneItem {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(120px) scale(0.7);
+  transition: all var(--transition-silk);
+  will-change: transform, opacity;
+  z-index: 2;
+}
+
+.milestoneItem.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: milestoneReveal var(--transition-silk) var(--milestone-delay) both;
+}
+
+@keyframes milestoneReveal {
+  0% { 
+    opacity: 0; 
+    transform: translateY(120px) scale(0.7) rotateX(-15deg); 
+    filter: blur(10px);
+  }
+  50% { 
+    opacity: 0.7; 
+    transform: translateY(40px) scale(0.85) rotateX(-3deg); 
+    filter: blur(3px);
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1) rotateX(0deg); 
+    filter: blur(0);
+  }
+}
+
+/* ===== TIMELINE DOT ===== */
+.timelineDot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dotCore {
+  width: 80px;
+  height: 80px;
+  background: 
+    radial-gradient(circle at 30% 30%,
+      rgba(255, 255, 255, 1) 0%,
+      var(--rich-gold) 30%,
+      var(--warm-bronze) 70%,
+      var(--rich-gold) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    var(--shadow-dramatic),
+    inset 0 4px 20px rgba(255, 255, 255, 0.8);
+  border: 4px solid var(--pearl-white);
+  transition: all var(--transition-elegant);
+  animation: dotPulse 6s ease-in-out infinite;
+  position: relative;
+  z-index: 3;
+}
+
+@keyframes dotPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: 
+      var(--shadow-dramatic),
+      inset 0 4px 20px rgba(255, 255, 255, 0.8);
+  }
+  50% { 
+    transform: scale(1.1); 
+    box-shadow: 
+      var(--shadow-mystical),
+      inset 0 6px 30px rgba(255, 255, 255, 1);
+  }
+}
+
+.milestoneItem:hover .dotCore {
+  transform: scale(1.15);
+  box-shadow: 
+    var(--shadow-mystical),
+    inset 0 6px 30px rgba(255, 255, 255, 1);
+}
+
+.milestoneIcon {
+  font-size: 2rem;
+  animation: iconFloat 4s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(5deg); }
+}
+
+.dotRipple {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--rich-gold);
+  border-radius: 50%;
+  animation: rippleExpand 4s ease-in-out infinite;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+@keyframes rippleExpand {
+  0% { 
+    transform: scale(0.8); 
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.2); 
+    opacity: 0.3;
+  }
+  100% { 
+    transform: scale(0.8); 
+    opacity: 0.8;
+  }
+}
+
+.dotGlow {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(195, 166, 106, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 5s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes glowPulse {
+  0%, 100% { 
+    transform: scale(0.9); 
+    opacity: 0.6;
+  }
+  50% { 
+    transform: scale(1.3); 
+    opacity: 1;
+  }
+}
+
+/* ===== MILESTONE CARDS ===== */
+.milestoneCard {
+  width: 45%;
+  max-width: 500px;
+  position: relative;
+  transition: all var(--transition-elegant);
+}
+
+.milestoneCard.left {
+  margin-right: auto;
+  margin-left: 0;
+  transform-origin: right center;
+}
+
+.milestoneCard.right {
+  margin-left: auto;
+  margin-right: 0;
+  transform-origin: left center;
+}
+
+.milestoneItem:hover .milestoneCard {
+  transform: scale(1.03);
+}
+
+.cardContent {
+  background: 
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(247, 239, 226, 0.9) 30%,
+      rgba(255, 255, 255, 0.95) 70%,
+      rgba(247, 239, 226, 0.8) 100%);
+  border-radius: 20px;
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-ethereal);
+  border: 1px solid rgba(195, 166, 106, 0.3);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-elegant);
+}
+
+.milestoneItem:hover .cardContent {
+  box-shadow: var(--shadow-mystical);
+  border-color: var(--rich-gold);
+  background: 
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(247, 239, 226, 0.95) 30%,
+      rgba(255, 255, 255, 0.98) 70%,
+      rgba(247, 239, 226, 0.9) 100%);
+}
+
+.cardContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(195, 166, 106, 0.1), transparent);
+  transition: left 0.8s ease;
+}
+
+.milestoneItem:hover .cardContent::before {
+  left: 100%;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.yearBadge {
+  background: var(--gold-gradient);
+  color: var(--pearl-white);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 30px;
+  font-weight: 800;
+  box-shadow: var(--shadow-ethereal);
+  position: relative;
+}
+
+.yearNumber {
+  font-size: 1.2rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.categoryTag {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-md);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(195, 166, 106, 0.3);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: var(--deep-charcoal);
+  backdrop-filter: blur(10px);
+}
+
+.categoryDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: dotGlow 3s ease-in-out infinite;
+}
+
+.categoryDot.foundation { background: #4CAF50; }
+.categoryDot.product { background: #2196F3; }
+.categoryDot.expansion { background: #FF9800; }
+.categoryDot.innovation { background: #9C27B0; }
+.categoryDot.recognition { background: #F44336; }
+.categoryDot.sustainability { background: #8BC34A; }
+
+@keyframes dotGlow {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.milestoneTitle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--deep-charcoal);
+  margin: 0;
+  line-height: 1.2;
+  transition: color var(--transition-quick);
+}
+
+.milestoneItem:hover .milestoneTitle {
+  color: var(--rich-gold);
+}
+
+.milestoneSubtitle {
+  font-size: 1.1rem;
+  color: var(--warm-bronze);
+  margin: 0;
+  font-style: italic;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.milestoneDescription {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--deep-charcoal);
+  margin: 0;
+  opacity: 0.9;
+}
+
+.achievementsList {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid rgba(195, 166, 106, 0.2);
+}
+
+.achievementsTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--warm-bronze);
+  margin: 0 0 var(--spacing-md) 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.achievements {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.achievementItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-size: 0.9rem;
+  color: var(--deep-charcoal);
+  line-height: 1.5;
+}
+
+.achievementBullet {
+  color: var(--rich-gold);
+  font-size: 0.8rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+  animation: bulletGlow 4s ease-in-out infinite;
+}
+
+@keyframes bulletGlow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; filter: drop-shadow(0 0 4px rgba(195, 166, 106, 0.8)); }
+}
+
+.cardConnector {
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 2px;
+  background: var(--gold-gradient);
+  transform: translateY(-50%);
+  box-shadow: var(--glow-soft);
+}
+
+.milestoneCard.left .cardConnector {
+  right: -30px;
+}
+
+.milestoneCard.right .cardConnector {
+  left: -30px;
+}
+
+/* ===== SUMMARY SECTION ===== */
+.summarySection {
+  margin-top: var(--spacing-2xl);
+  animation: summaryRise 2s var(--transition-elegant) 1s both;
+}
+
+@keyframes summaryRise {
+  0% { 
+    opacity: 0; 
+    transform: translateY(80px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.summaryContent {
+  background: 
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(247, 239, 226, 0.9) 50%,
+      rgba(255, 255, 255, 0.95) 100%);
+  border-radius: 30px;
+  padding: var(--spacing-3xl);
+  box-shadow: var(--shadow-dramatic);
+  border: 2px solid rgba(195, 166, 106, 0.3);
+  backdrop-filter: blur(25px);
+  position: relative;
+  overflow: hidden;
+}
+
+.summaryContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(195, 166, 106, 0.1), transparent);
+  animation: summaryShimmer 8s ease-in-out infinite;
+}
+
+@keyframes summaryShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.summaryHeader {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+  position: relative;
+  z-index: 1;
+}
+
+.summaryHeader h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--gold-gradient);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 var(--spacing-md) 0;
+  animation: summaryTitleShimmer 4s ease-in-out infinite;
+}
+
+@keyframes summaryTitleShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.summaryHeader p {
+  font-size: 1.2rem;
+  color: var(--satin-taupe);
+  margin: 0;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.summaryStats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-2xl);
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-align: center;
+}
+
+.statIcon {
+  font-size: 2.5rem;
+  animation: statIconFloat 4s ease-in-out infinite;
+}
+
+@keyframes statIconFloat {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-8px) scale(1.1); }
+}
+
+.statNumber {
+  font-size: 3rem;
+  font-weight: 900;
+  background: var(--gold-gradient);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  animation: 
+    statShimmer 4s ease-in-out infinite,
+    statCount 2.5s ease-out both;
+}
+
+@keyframes statShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes statCount {
+  0% { 
+    transform: scale(0.5); 
+    opacity: 0;
+  }
+  60% { 
+    transform: scale(1.2); 
+    opacity: 0.8;
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 1;
+  }
+}
+
+.statLabel {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--satin-taupe);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+}
+
+.statSeparator {
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--rich-gold) 50%,
+    transparent 100%
+  );
+  opacity: 0.6;
+  animation: separatorGlow 4s ease-in-out infinite;
+}
+
+@keyframes separatorGlow {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scaleY(1);
+    box-shadow: none;
+  }
+  50% { 
+    opacity: 1; 
+    transform: scaleY(1.2);
+    box-shadow: 0 0 15px rgba(195, 166, 106, 0.8);
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+  
+  .milestoneCard {
+    width: 40%;
+  }
+  
+  .summaryStats {
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 1024px) {
+  .milestonesSection {
+    padding: var(--spacing-2xl) 0;
+  }
+  
+  .container {
+    gap: var(--spacing-2xl);
+  }
+  
+  .milestoneCard {
+    width: 42%;
+  }
+  
+  .cardContent {
+    padding: var(--spacing-xl);
+  }
+  
+  .dotCore {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .milestoneIcon {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .milestoneItem {
+    flex-direction: column;
+  }
+  
+  .milestoneCard {
+    width: 90%;
+    margin: 0 auto var(--spacing-lg);
+  }
+  
+  .milestoneCard.left,
+  .milestoneCard.right {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cardConnector {
+    display: none;
+  }
+  
+  .timelinePath,
+  .progressLine {
+    left: 20px;
+  }
+  
+  .timelineDot {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+  
+  .sectionTitle {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+  
+  .summaryStats {
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+  
+  .statSeparator {
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      var(--rich-gold) 50%,
+      transparent 100%
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  .cardContent {
+    padding: var(--spacing-lg);
+  }
+  
+  .dotCore {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .milestoneIcon {
+    font-size: 1.5rem;
+  }
+  
+  .milestoneTitle {
+    font-size: 1.5rem;
+  }
+  
+  .summaryContent {
+    padding: var(--spacing-xl);
+  }
+  
+  .summaryHeader h3 {
+    font-size: 2rem;
+  }
+  
+  .statNumber {
+    font-size: 2.5rem;
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.milestonesSection * {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .milestonesSection *,
+  .floatingOrb,
+  .dotCore,
+  .milestoneIcon {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .backgroundLayer1,
+  .backgroundLayer2 {
+    animation: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .milestonesSection {
+    background: var(--pearl-white);
+  }
+  
+  .titleMain {
+    -webkit-text-fill-color: var(--deep-charcoal);
+    background: none;
+  }
+  
+  .milestoneItem:focus {
+    outline: 4px solid var(--deep-charcoal);
+    outline-offset: 4px;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .milestonesSection {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .backgroundElements {
+    display: none !important;
+  }
+  
+  .milestoneItem {
+    break-inside: avoid;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .timelineDot {
+    position: relative !important;
+    left: 0 !important;
+    transform: none !important;
+    margin: 1rem auto !important;
+  }
+}
