@@ -134,7 +134,7 @@ const Navbartwo = () => {
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/gallery" className={styles.navLink}>
+            <Link href="/Gallery" className={styles.navLink}>
               Gallery
             </Link>
           </li>
@@ -226,7 +226,7 @@ const Navbartwo = () => {
             </Link>
           </li>
           <li>
-            <Link href="/gallery" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>
+            <Link href="/Gallery" className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>
               Gallery
             </Link>
           </li>
