@@ -1,15 +1,7 @@
 /* ===== Distillery Showcase Styles ===== */
 
 /* 🎨 Color Palette */
-:root {
-  --rich-gold: #c3a66a;
-  --warm-bronze: #a07837;
-  --pearl-white: #ffffff;
-  --soft-champagne: #f7efe2;
-  --satin-taupe: #b3a393;
-  --deep-charcoal: #1c1c1c;
-  --overlay-dark: rgba(0, 0, 0, 0.45);
-}
+
 
 /* === Main Showcase === */
 .showcase {
