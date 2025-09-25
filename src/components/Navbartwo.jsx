@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../css/navbartwo.module.css';
+import styles from '@/css/navbartwo.module.css';
 import { Lato } from 'next/font/google';
 
 const lato = Lato({
@@ -134,7 +134,7 @@ const Navbartwo = () => {
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/Gallery" className={styles.navLink}>
+            <Link href="/gallery" className={styles.navLink}>
               Gallery
             </Link>
           </li>
