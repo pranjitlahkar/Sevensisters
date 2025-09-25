@@ -1,428 +1,262 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
-import styles from '../css/gallery.module.css';
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import styles from "@/css/gallery.module.css";
 
-const Gallery = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
-  const [mounted, setMounted] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [scrollY, setScrollY] = useState(0);
-  const [lightboxImage, setLightboxImage] = useState(null);
-  const [visibleItems, setVisibleItems] = useState(new Set());
-  const galleryRef = useRef(null);
-  const itemsRef = useRef([]);
+const images = [
+    { id: 1, src: "/images/gallery/distillery.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+ 
+    { id: 2, src: "/images/gallery/distillery2.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 3, src: "/images/gallery/distillery3.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 4, src: "/images/gallery/distillery4.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 5, src: "/images/gallery/distillery5.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 6, src: "/images/gallery/distillery6.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 7, src: "/images/gallery/distillery7.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 8, src: "/images/gallery/distillery8.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 9, src: "/images/gallery/distillery9.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 10, src: "/images/gallery/distillery10.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 11, src: "/images/gallery/distillery11.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 12, src: "/images/gallery/distillery12.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 13, src: "/images/gallery/distillery13.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 14, src: "/images/gallery/distillery14.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 15, src: "/images/gallery/distillery15.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
+    { id: 16, src: "/images/gallery/distillery16.jpg", category: "Distillery", title: "Heritage Craftsmanship" },
 
-  // Gallery categories with filtering
-  const categories = [
-    { id: 'all', name: 'All Gallery', icon: '⚡' },
-    { id: 'distillery', name: 'Distillery', icon: '🏭' },
-    { id: 'products', name: 'Products', icon: '🍾' },
-    { id: 'awards', name: 'Awards', icon: '🏆' },
-    { id: 'events', name: 'Events', icon: '🎉' },
-    { id: 'heritage', name: 'Heritage', icon: '🏛️' }
-  ];
+    { id: 17, src: "/images/gallery/team.jpg", category: "Team", title: "Rich Legacy" },
+    { id: 18, src: "/images/gallery/team2.jpg", category: "Team", title: "Rich Legacy" },
+    { id: 19, src: "/images/gallery/team3.jpg", category: "Team", title: "Rich Legacy" },
+    { id: 20, src: "/images/gallery/team4.jpg", category: "Team", title: "Rich Legacy" },
+    { id: 21, src: "/images/gallery/team5.jpg", category: "Team", title: "Rich Legacy" },
+    { id: 22, src: "/images/gallery/team6.jpg", category: "Team", title: "Rich Legacy" },
 
-  // Sample gallery items - replace with your actual images
-  const galleryItems = [
-    {
-      id: 1,
-      category: 'distillery',
-      title: 'State-of-the-Art Distillation Unit',
-      description: 'Our modern copper pot stills ensure the finest quality spirits',
-      image: '/director1.jpg',
-      aspectRatio: 'landscape',
-      featured: true
-    },
-    {
-      id: 2,
-      category: 'products',
-      title: 'Premium Whiskey Collection',
-      description: 'Aged to perfection in oak barrels',
-      image: '/director2.jpg',
-      aspectRatio: 'portrait'
-    },
-    {
-      id: 3,
-      category: 'heritage',
-      title: 'Founding Fathers Legacy',
-      description: 'Historical moments from our establishment in 1998',
-      image: '/director3.jpg',
-      aspectRatio: 'square'
-    },
-    {
-      id: 4,
-      category: 'awards',
-      title: 'Excellence in Quality Award 2023',
-      description: 'Recognition for outstanding spirits production',
-      image: '/director4.jpg',
-      aspectRatio: 'landscape'
-    },
-    {
-      id: 5,
-      category: 'distillery',
-      title: 'Traditional Fermentation Process',
-      description: 'Time-honored techniques meet modern precision',
-      image: '/director5.jpg',
-      aspectRatio: 'portrait',
-      featured: true
-    },
-    {
-      id: 6,
-      category: 'events',
-      title: 'Annual Tasting Event 2024',
-      description: 'Celebrating excellence with connoisseurs',
-      image: '/director1.jpg',
-      aspectRatio: 'landscape'
-    },
-    {
-      id: 7,
-      category: 'products',
-      title: 'Artisanal Gin Series',
-      description: 'Botanically infused with Assamese herbs',
-      image: '/director2.jpg',
-      aspectRatio: 'square'
-    },
-    {
-      id: 8,
-      category: 'heritage',
-      title: 'Original Distillery Building',
-      description: 'Where it all began - our historic foundation',
-      image: '/director3.jpg',
-      aspectRatio: 'portrait'
-    },
-    {
-      id: 9,
-      category: 'distillery',
-      title: 'Quality Control Laboratory',
-      description: 'Ensuring every drop meets our standards',
-      image: '/director4.jpg',
-      aspectRatio: 'landscape'
-    },
-    {
-      id: 10,
-      category: 'awards',
-      title: 'Best Distillery Northeast India',
-      description: 'Regional excellence recognition',
-      image: '/director5.jpg',
-      aspectRatio: 'square'
-    },
-    {
-      id: 11,
-      category: 'events',
-      title: 'Industry Leadership Summit',
-      description: 'Leading discussions on sustainable distilling',
-      image: '/director1.jpg',
-      aspectRatio: 'portrait'
-    },
-    {
-      id: 12,
-      category: 'products',
-      title: 'Limited Edition Reserve',
-      description: 'Exclusive blend for discerning palates',
-      image: '/director2.jpg',
-      aspectRatio: 'landscape',
-      featured: true
-    }
-  ];
+    { id: 23, src: "/images/gallery/product1.jpg", category: "Products", title: "Premium Spirits" },
+    { id: 24, src: "/images/gallery/product2.jpg", category: "Products", title: "Premium Spirits" },
+    { id: 25, src: "/images/gallery/product3.jpg", category: "Products", title: "Premium Spirits" },
+    { id: 26, src: "/images/gallery/product4.jpg", category: "Products", title: "Premium Spirits" },
+    { id: 27, src: "/images/gallery/product5.jpg", category: "Products", title: "Premium Spirits" },
+    { id: 28, src: "/images/gallery/product6.jpg", category: "Products", title: "Premium Spirits" },
 
-  // Filter items based on active category
-  const filteredItems = activeCategory === 'all' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === activeCategory);
+];
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+const categories = ["All", "Distillery", "Team",  "Products"];
 
-  useEffect(() => {
-    if (!mounted) return;
+export default function PremiumGallery() {
+    const [selectedCategory, setSelectedCategory] = useState("All");
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const galleryRef = useRef(null);
+    const lightboxRef = useRef(null);
+    const headerRef = useRef(null);
 
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-      
-      // Check which items are visible for animation
-      itemsRef.current.forEach((item, index) => {
-        if (item) {
-          const rect = item.getBoundingClientRect();
-          const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2;
-          
-          if (isVisible) {
-            setVisibleItems(prev => new Set([...prev, index]));
-          }
+    const filteredImages =
+        selectedCategory === "All"
+            ? images
+            : images.filter((img) => img.category === selectedCategory);
+
+    // Header animation on mount
+    useEffect(() => {
+        if (headerRef.current) {
+            gsap.timeline()
+                .fromTo(
+                    headerRef.current.children,
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        stagger: 0.3,
+                        duration: 1,
+                        ease: "power2.out"
+                    }
+                );
         }
-      });
-    };
+    }, []);
 
-    const handleMouseMove = (e) => {
-      const rect = galleryRef.current?.getBoundingClientRect();
-      if (rect) {
-        setMousePosition({
-          x: ((e.clientX - rect.left) / rect.width - 0.5) * 2,
-          y: ((e.clientY - rect.top) / rect.height - 0.5) * 2
-        });
-      }
-    };
-
-    const throttle = (func, limit) => {
-      let inThrottle;
-      return function(...args) {
-        if (!inThrottle) {
-          func.apply(this, args);
-          inThrottle = true;
-          setTimeout(() => inThrottle = false, limit);
+    // Animate gallery when filter changes
+    useEffect(() => {
+        if (galleryRef.current) {
+            gsap.fromTo(
+                galleryRef.current.children,
+                { opacity: 0, scale: 0.9, y: 30 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    stagger: 0.1,
+                    ease: "power2.out",
+                    duration: 0.8,
+                }
+            );
         }
-      }
+    }, [selectedCategory]);
+
+    // Animate lightbox on open
+    useEffect(() => {
+        if (lightboxOpen && lightboxRef.current) {
+            gsap.fromTo(
+                lightboxRef.current,
+                { opacity: 0, scale: 0.9 },
+                { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }
+            );
+        }
+    }, [lightboxOpen]);
+
+    const openLightbox = (index) => {
+        setCurrentIndex(index);
+        setLightboxOpen(true);
     };
 
-    const handleScrollThrottled = throttle(handleScroll, 16);
-    const handleMouseThrottled = throttle(handleMouseMove, 32);
-
-    window.addEventListener('scroll', handleScrollThrottled, { passive: true });
-    if (galleryRef.current) {
-      galleryRef.current.addEventListener('mousemove', handleMouseThrottled, { passive: true });
-    }
-    
-    // Initial check for visible items
-    handleScroll();
-    
-    return () => {
-      window.removeEventListener('scroll', handleScrollThrottled);
-      if (galleryRef.current) {
-        galleryRef.current.removeEventListener('mousemove', handleMouseThrottled);
-      }
+    const closeLightbox = () => {
+        setLightboxOpen(false);
     };
-  }, [mounted]);
 
-  // Handle category change
-  const handleCategoryChange = (categoryId) => {
-    setActiveCategory(categoryId);
-    setVisibleItems(new Set()); // Reset visibility for new animation
-  };
+    const showNext = () => {
+        setCurrentIndex((prev) => (prev + 1) % filteredImages.length);
+    };
 
-  // Handle lightbox
-  const openLightbox = (image) => {
-    setLightboxImage(image);
-    document.body.style.overflow = 'hidden';
-  };
+    const showPrev = () => {
+        setCurrentIndex(
+            (prev) => (prev - 1 + filteredImages.length) % filteredImages.length
+        );
+    };
 
-  const closeLightbox = () => {
-    setLightboxImage(null);
-    document.body.style.overflow = 'unset';
-  };
-
-  // Parallax calculations
-  const parallaxOffset = Math.min(scrollY * 0.3, 200);
-  const mouseParallaxX = mousePosition.x * 15;
-  const mouseParallaxY = mousePosition.y * 10;
-
-  return (
-    <section className={styles.gallerySection} ref={galleryRef}>
-      {/* Background Elements */}
-      <div className={styles.backgroundElements}>
-        <div 
-          className={styles.backgroundLayer1}
-          style={{
-            transform: `translate3d(${mouseParallaxX * 0.2}px, ${parallaxOffset + mouseParallaxY * 0.1}px, 0)`
-          }}
-        />
-        <div 
-          className={styles.backgroundLayer2}
-          style={{
-            transform: `translate3d(${mouseParallaxX * 0.1}px, ${parallaxOffset * 0.6}px, 0)`
-          }}
-        />
-        <div 
-          className={styles.floatingElements}
-          style={{
-            transform: `translate3d(${mouseParallaxX * 0.05}px, ${parallaxOffset * 0.3}px, 0)`
-          }}
-        >
-          {Array.from({ length: 8 }, (_, i) => (
-            <div 
-              key={i}
-              className={styles.floatingParticle}
-              style={{
-                '--delay': `${i * 0.4}s`,
-                '--x': `${Math.random() * 100}%`,
-                '--y': `${Math.random() * 100}%`,
-                '--duration': `${8 + Math.random() * 6}s`
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className={styles.container}>
-        {/* Section Header */}
-        <div 
-          className={styles.sectionHeader}
-          style={{
-            transform: `translate3d(${mouseParallaxX * 0.02}px, 0, 0)`
-          }}
-        >
-          <div className={styles.headerContent}>
-            <div className={styles.sectionBadge}>
-              <span>Visual Journey</span>
+    return (
+        <section className={styles.gallerySection}>
+            {/* Luxury Background Elements */}
+            <div className={styles.luxuryElements}>
+                <div className={styles.floatingElement} style={{ '--delay': '0s' }}></div>
+                <div className={styles.floatingElement} style={{ '--delay': '3s' }}></div>
+                <div className={styles.floatingElement} style={{ '--delay': '6s' }}></div>
             </div>
-            
-            <h2 className={styles.sectionTitle}>
-              <span className={styles.titleMain}>Gallery</span>
-              <span className={styles.titleSub}>Of Excellence</span>
-            </h2>
-            
-            <div className={styles.titleDecoration}>
-              <div className={styles.decorLine}></div>
-              <div className={styles.decorOrb}>
-                <div className={styles.orbInner}></div>
-              </div>
-              <div className={styles.decorLine}></div>
-            </div>
-            
-            <p className={styles.sectionDescription}>
-              Discover the artistry behind every bottle, from our state-of-the-art facilities 
-              to award-winning moments that define our legacy of excellence in premium spirits.
-            </p>
-          </div>
-        </div>
 
-        {/* Category Filters */}
-        <div className={styles.categoryFilters}>
-          <div className={styles.filtersContainer}>
-            {categories.map((category, index) => (
-              <button
-                key={category.id}
-                className={`${styles.categoryButton} ${activeCategory === category.id ? styles.active : ''}`}
-                onClick={() => handleCategoryChange(category.id)}
-                style={{
-                  '--delay': `${index * 0.1}s`
-                }}
-              >
-                <span className={styles.categoryIcon}>{category.icon}</span>
-                <span className={styles.categoryName}>{category.name}</span>
-                <div className={styles.categoryGlow}></div>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Gallery Grid */}
-        <div className={styles.galleryGrid}>
-          {filteredItems.map((item, index) => (
-            <div
-              key={item.id}
-              ref={el => itemsRef.current[index] = el}
-              className={`${styles.galleryItem} ${styles[item.aspectRatio]} ${item.featured ? styles.featured : ''} ${visibleItems.has(index) ? styles.visible : ''}`}
-              style={{
-                '--item-delay': `${index * 0.1}s`
-              }}
-              onClick={() => openLightbox(item)}
-            >
-              <div className={styles.itemContainer}>
-                <div className={styles.imageWrapper}>
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={600}
-                    height={400}
-                    className={styles.galleryImage}
-                  />
-                  <div className={styles.imageOverlay}></div>
-                  <div className={styles.imageGlow}></div>
+            {/* Header Section */}
+            <div className={styles.headerContainer} ref={headerRef}>
+                <div className={styles.premiumBadge}>
+                    <span className={styles.badgeText}>Visual Excellence</span>
+                    <div className={styles.badgeGlow}></div>
                 </div>
-                
-                <div className={styles.itemContent}>
-                  <div className={styles.itemCategory}>
-                    <span className={styles.categoryTag}>
-                      {categories.find(cat => cat.id === item.category)?.icon} 
-                      {categories.find(cat => cat.id === item.category)?.name}
+                <h1 className={styles.galleryTitle}>Premium Gallery</h1>
+                <div className={styles.royalDivider}>
+                    <div className={styles.dividerLine}></div>
+                    <div className={styles.centerDiamond}>
+                        <div className={styles.diamondInner}></div>
+                    </div>
+                    <div className={styles.dividerLine}></div>
+                </div>
+                <p className={styles.gallerySubtitle}>
+                    Discover the artistry and heritage behind our finest creations through
+                    a curated collection of moments that define our legacy
+                </p>
+
+                {/* Company Logo */}
+                <div className={styles.logoContainer}>
+                    <img
+                        src="/images/logo/logoheritage.png"
+                        alt="Seven Sisters Distillery"
+                        className={styles.companyLogo}
+                    />
+                </div>
+            </div>
+
+            {/* Filter Navigation */}
+            <div className={styles.filterContainer}>
+                <div className={styles.filterButtons}>
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            className={`${styles.filterBtn} ${selectedCategory === cat ? styles.active : ""
+                                }`}
+                            onClick={() => setSelectedCategory(cat)}
+                        >
+                            <span className={styles.btnText}>{cat}</span>
+                            <div className={styles.btnShimmer}></div>
+                        </button>
+                    ))}
+                </div>
+                <div className={styles.filterIndicator}>
+                    <span className={styles.resultsCount}>
+                        {filteredImages.length} {filteredImages.length === 1 ? 'Image' : 'Images'}
                     </span>
-                  </div>
-                  
-                  <h3 className={styles.itemTitle}>{item.title}</h3>
-                  <p className={styles.itemDescription}>{item.description}</p>
-                  
-                  <div className={styles.viewButton}>
-                    <span>View Full Size</span>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M21 9V7l-4 4 4 4v-2h-3V9h3zM3 9h3v4H3v2l4-4-4-4v2z"/>
-                    </svg>
-                  </div>
                 </div>
-                
-                {item.featured && (
-                  <div className={styles.featuredBadge}>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                  </div>
-                )}
-              </div>
             </div>
-          ))}
-        </div>
 
-        {/* Stats Section */}
-        <div className={styles.statsSection}>
-          <div className={styles.statsContainer}>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>25+</div>
-              <div className={styles.statLabel}>Years of Heritage</div>
+            {/* Gallery Grid */}
+            <div className={styles.galleryContainer}>
+                <div className={styles.galleryGrid} ref={galleryRef}>
+                    {filteredImages.map((img, index) => (
+                        <div
+                            key={img.id}
+                            className={styles.galleryCard}
+                            onClick={() => openLightbox(index)}
+                        >
+                            <div className={styles.imageContainer}>
+                                <img
+                                    src={img.src}
+                                    alt={img.title}
+                                    className={styles.galleryImg}
+                                />
+                                <div className={styles.imageOverlay}>
+                                    <div className={styles.overlayContent}>
+                                        <h3 className={styles.imageTitle}>{img.title}</h3>
+                                        <p className={styles.imageCategory}>{img.category}</p>
+                                        <div className={styles.viewIcon}>
+                                            <span>👁</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.cardGlow}></div>
+                            </div>
+                            <div className={styles.cardShimmer}></div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <div className={styles.statSeparator}></div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>50+</div>
-              <div className={styles.statLabel}>Awards Won</div>
-            </div>
-            <div className={styles.statSeparator}></div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>100K+</div>
-              <div className={styles.statLabel}>Bottles Crafted</div>
-            </div>
-            <div className={styles.statSeparator}></div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>12</div>
-              <div className={styles.statLabel}>States Served</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Lightbox */}
-      {lightboxImage && (
-        <div className={styles.lightbox} onClick={closeLightbox}>
-          <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={closeLightbox}>
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-              </svg>
-            </button>
-            
-            <div className={styles.lightboxImage}>
-              <Image
-                src={lightboxImage.image}
-                alt={lightboxImage.title}
-                width={1200}
-                height={800}
-                className={styles.fullImage}
-              />
-            </div>
-            
-            <div className={styles.lightboxInfo}>
-              <div className={styles.lightboxCategory}>
-                {categories.find(cat => cat.id === lightboxImage.category)?.icon} 
-                {categories.find(cat => cat.id === lightboxImage.category)?.name}
-              </div>
-              <h3 className={styles.lightboxTitle}>{lightboxImage.title}</h3>
-              <p className={styles.lightboxDescription}>{lightboxImage.description}</p>
-            </div>
-          </div>
-        </div>
-      )}
-    </section>
-  );
-};
+            {/* Lightbox Modal */}
+            {lightboxOpen && (
+                <div className={styles.lightbox} ref={lightboxRef}>
+                    <div className={styles.lightboxOverlay} onClick={closeLightbox}></div>
+                    <div className={styles.lightboxContent}>
+                        <button className={styles.closeBtn} onClick={closeLightbox}>
+                            <span>✕</span>
+                        </button>
 
-export default Gallery;
+                        <button
+                            className={`${styles.navBtn} ${styles.prevBtn}`}
+                            onClick={showPrev}
+                        >
+                            <span>‹</span>
+                        </button>
+
+                        <div className={styles.imageWrapper}>
+                            <img
+                                src={filteredImages[currentIndex]?.src}
+                                alt={filteredImages[currentIndex]?.title}
+                                className={styles.lightboxImg}
+                            />
+                            <div className={styles.imageInfo}>
+                                <h3 className={styles.lightboxTitle}>
+                                    {filteredImages[currentIndex]?.title}
+                                </h3>
+                                <p className={styles.lightboxCategory}>
+                                    {filteredImages[currentIndex]?.category}
+                                </p>
+                            </div>
+                        </div>
+
+                        <button
+                            className={`${styles.navBtn} ${styles.nextBtn}`}
+                            onClick={showNext}
+                        >
+                            <span>›</span>
+                        </button>
+                    </div>
+
+                    <div className={styles.imageCounter}>
+                        <span>{currentIndex + 1} / {filteredImages.length}</span>
+                    </div>
+                </div>
+            )}
+        </section>
+    );
+}

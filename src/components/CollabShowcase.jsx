@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import styles from '../css/collabshowcase.module.css';
+import styles from '@/css/collabshowcase.module.css';
 import { companies } from '../data/products'; // ✅ now imported
 
 if (typeof window !== 'undefined') {
@@ -65,6 +65,15 @@ export default function CollabShowcase({
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.subtitle}>{subtitle}</p>
       </div>
+      <div className={styles.premiumDivider}>
+        
+        <div className={styles.dividerLine}></div>
+        <div className={styles.centerCircle}>
+          <div className={styles.circleInner}></div>
+        </div>
+        <div className={styles.dividerLine}></div>
+      </div>
+
 
       {/* Companies */}
       <div className={styles.companyList}>

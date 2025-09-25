@@ -3,8 +3,12 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from '../css/footer.module.css';
+import { useRouter } from 'next/navigation';
+
+
 
 const Footer = () => {
+  const router = useRouter();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [subscriptionStatus, setSubscriptionStatus] = useState('');
@@ -41,6 +45,7 @@ const Footer = () => {
   const handleNavigation = (page) => {
     console.log(`Navigating to: ${page}`);
     // Add your navigation logic here
+    router.push(`/${page}`);
   };
 
   const currentYear = new Date().getFullYear();
@@ -130,15 +135,6 @@ const Footer = () => {
                       </svg>
                     </button>
                     
-                    <button 
-                      onClick={() => handleSocialClick('linkedin')}
-                      className={styles.socialButton}
-                      aria-label="Follow us on LinkedIn"
-                    >
-                      <svg viewBox="0 0 24 24" fill="currentColor" className={styles.socialIcon}>
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                      </svg>
-                    </button>
                   </div>
                 </div>
               </div>
@@ -151,13 +147,13 @@ const Footer = () => {
                 <div className={styles.titleUnderline}></div>
               </div>
               <ul className={styles.linksList}>
-                <li><button onClick={() => handleNavigation('home')} className={styles.footerLink}>Home</button></li>
+                <li><button onClick={() => handleNavigation('/')} className={styles.footerLink}>Home</button></li>
                 <li><button onClick={() => handleNavigation('about')} className={styles.footerLink}>About Us</button></li>
-                <li><button onClick={() => handleNavigation('history')} className={styles.footerLink}>Our Heritage</button></li>
+                <li><button onClick={() => handleNavigation('values')} className={styles.footerLink}>Our Values</button></li>
                 <li><button onClick={() => handleNavigation('mission')} className={styles.footerLink}>Mission & Vision</button></li>
                 <li><button onClick={() => handleNavigation('leadership')} className={styles.footerLink}>Leadership Team</button></li>
-                <li><button onClick={() => handleNavigation('board')} className={styles.footerLink}>Board of Directors</button></li>
-                <li><button onClick={() => handleNavigation('careers')} className={styles.footerLink}>Careers</button></li>
+                <li><button onClick={() => handleNavigation('directors')} className={styles.footerLink}>Board of Directors</button></li>
+                <li><button onClick={() => handleNavigation('brand')} className={styles.footerLink}>Our Brand</button></li>
               </ul>
             </div>
 
@@ -170,10 +166,6 @@ const Footer = () => {
               <ul className={styles.linksList}>
                 <li><button onClick={() => handleNavigation('premium')} className={styles.footerLink}>Premium Collection</button></li>
                 <li><button onClick={() => handleNavigation('limited')} className={styles.footerLink}>Limited Edition</button></li>
-                <li><button onClick={() => handleNavigation('craft')} className={styles.footerLink}>Craft Series</button></li>
-                <li><button onClick={() => handleNavigation('awards')} className={styles.footerLink}>Awards & Recognition</button></li>
-                <li><button onClick={() => handleNavigation('tastings')} className={styles.footerLink}>Tastings & Events</button></li>
-                <li><button onClick={() => handleNavigation('distillery')} className={styles.footerLink}>Distillery Tours</button></li>
                 <li><button onClick={() => handleNavigation('news')} className={styles.footerLink}>News & Updates</button></li>
               </ul>
             </div>
@@ -197,7 +189,7 @@ const Footer = () => {
                       </div>
                       <div className={styles.contactDetails}>
                         <span className={styles.contactLabel}>Visit Us</span>
-                        <span className={styles.contactValue}>Guwahati, Assam, India</span>
+                        <span className={styles.contactValue}>EPIP,Amingaon,Guwahati,Assam,781031</span>
                       </div>
                     </div>
                     
@@ -209,7 +201,7 @@ const Footer = () => {
                       </div>
                       <div className={styles.contactDetails}>
                         <span className={styles.contactLabel}>Call Us</span>
-                        <a href="tel:+919876543210" className={styles.contactValue}>+91 98765 43210</a>
+                        <a href="tel:+919007099119" className={styles.contactValue}>+91 90070 99119</a>
                       </div>
                     </div>
                     
@@ -221,13 +213,13 @@ const Footer = () => {
                       </div>
                       <div className={styles.contactDetails}>
                         <span className={styles.contactLabel}>Email Us</span>
-                        <a href="mailto:info@sevensistersco.com" className={styles.contactValue}>info@sevensistersco.com</a>
+                        <a href="mailto:info@sevensistersco.com" className={styles.contactValue}>info@sevensistersdistilleries.com</a>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Newsletter Subscription */}
+                {/* Newsletter Subscription
                 <div className={styles.newsletterSection}>
                   <div className={styles.newsletterHeader}>
                     <h5 className={styles.newsletterTitle}>Exclusive Updates</h5>
@@ -279,7 +271,7 @@ const Footer = () => {
                       </div>
                     )}
                   </form>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -295,17 +287,15 @@ const Footer = () => {
               <p className={styles.tagline}>Crafted with passion in India</p>
             </div>
             
-            <div className={styles.legalLinks}>
+            {/* <div className={styles.legalLinks}>
               <button onClick={() => handleNavigation('privacy')} className={styles.legalLink}>
                 Privacy Policy
               </button>
               <button onClick={() => handleNavigation('terms')} className={styles.legalLink}>
                 Terms of Service
               </button>
-              <button onClick={() => handleNavigation('sitemap')} className={styles.legalLink}>
-                Sitemap
-              </button>
-            </div>
+              
+            </div> */}
           </div>
         </div>
       </div>

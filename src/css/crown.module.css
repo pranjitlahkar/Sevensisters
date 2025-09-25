@@ -1,0 +1,152 @@
+.queensCrownIntro {
+  background: #F4E6CE;
+  color: #2C1000;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  border-radius: 2.5rem;
+  box-shadow: 0 2px 34px 0 rgba(42, 14, 0, 0.13), 0 1.5px 32px 0 #67280066;
+  background: linear-gradient(120deg, #F4E6CE 80%, #D2A11B22 120%);
+  position: relative;
+}
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+.crownIcon {
+  margin-bottom: 2rem;
+}
+.crown {
+  width: 85px;
+  height: 55px;
+  display: block;
+}
+.brandTitle {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 2.8rem;
+  letter-spacing: 0.02em;
+  color: #A93E3E;
+  margin: 0;
+  background: linear-gradient(90deg, #A93E3E, #D2A11B, #A93E3E 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  line-height: 1.06;
+}
+.subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem 0 1.4rem 0;
+  color: #672800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.description {
+  font-size: 1.16rem;
+  font-family: 'Montserrat', sans-serif;
+  color: #2C1000;
+  margin: 0.6rem 0 2.2rem 0;
+  text-align: center;
+  max-width: 510px;
+}
+.ctaContainer {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.primaryCta {
+  background: linear-gradient(98deg, #A93E3E 60%, #D2A11B 120%);
+  color: #F4E6CE;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  border: none;
+  border-radius: 65px;
+  padding: 0.8rem 2.4rem;
+  font-size: 1.06rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.19s, transform 0.18s;
+  box-shadow: 0 2px 8px 0 #D2A11B22;
+}
+.primaryCta:hover {
+  background: linear-gradient(108deg, #D2A11B 60%, #A93E3E 120%);
+  transform: scale(1.045);
+}
+.secondaryCta {
+  background: #F4E6CE;
+  color: #A93E3E;
+  border: 2px solid #D2A11B;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  border-radius: 55px;
+  padding: 0.8rem 2.0rem;
+  font-size: 1.03rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: border 0.15s, color 0.18s, background 0.15s, transform 0.18s;
+}
+.secondaryCta:hover {
+  background: #D2A11B;
+  color: #2C1000;
+  border: 2px solid #A93E3E;
+  transform: scale(1.04);
+}
+.decorativeElements {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.ornament {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #D2A11B33 0%, transparent 80%);
+  filter: blur(16px);
+}
+.ornament:nth-child(1) {
+  top: -40px;
+  left: -30px;
+}
+.ornament:nth-child(2) {
+  bottom: -42px;
+  right: -28px;
+}
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .container {
+    max-width: 98vw;
+    padding: 2rem 0.6rem;
+    border-radius: 1.4rem;
+  }
+  .brandTitle {
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 480px) {
+  .brandTitle {
+    font-size: 1.44rem;
+  }
+  .subtitle {
+    font-size: 0.98rem;
+  }
+  .ctaContainer {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+}

@@ -11,17 +11,17 @@ const features = [
   {
     title: 'Artisanal Craftsmanship',
     subtitle: 'Handcrafted in small batches',
-    img: './logo.png',
+    img: '/images/gallery/distillery14.jpg',
   },
   {
     title: 'Premium Quality',
     subtitle: 'Strict QC at every step',
-    img: '/images/quality.jpg',
+    img: '/images/gallery/distillery16.jpg',
   },
   {
     title: 'Heritage Since 2003',
     subtitle: 'Two decades of mastery',
-    img: '/images/heritage.jpg',
+    img: '/images/logo/logo.png',
   },
 ];
 

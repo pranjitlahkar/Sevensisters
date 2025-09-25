@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import styles from '../css/culture.module.css';
 
-// Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -14,92 +13,48 @@ if (typeof window !== 'undefined') {
 const Culture = () => {
   const containerRef = useRef(null);
   const imageRef = useRef(null);
-  const textContentRef = useRef(null);
-  const particlesRef = useRef(null);
   const ornamentRef = useRef(null);
   const timelineRef = useRef(null);
+  const [particles, setParticles] = useState([]);
+
+  // Generate particles client-side for SSR safety
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: 15 }, (_, i) => ({
+        id: i,
+        delay: `${i * 0.3}s`,
+        x: `${Math.random() * 100}%`,
+        y: `${Math.random() * 100}%`,
+        size: `${Math.random() * 6 + 2}px`
+      }))
+    );
+  }, []);
 
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      // Create main timeline
-      timelineRef.current = gsap.timeline({
-        defaults: { 
-          ease: 'power3.out' 
-        }
-      });
-
-      // Text animation sequence
+    const ctx = gsap.context(() => {
+      // Main text timeline
+      timelineRef.current = gsap.timeline({ defaults: { ease: 'power3.out' } });
       timelineRef.current
-        .from('.culture-badge', {
-          y: 60,
-          opacity: 0,
-          scale: 0.8,
-          duration: 1,
-          ease: 'back.out(1.7)'
-        })
-        .from('.culture-header', {
-          y: 80,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power4.out'
-        }, '-=0.6')
-        .from('.culture-subheader', {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out'
-        }, '-=0.8')
-        .from('.culture-content', {
-          y: 40,
-          opacity: 0,
-          duration: 1.2,
-          ease: 'power2.out'
-        }, '-=0.6')
-        .from('.culture-stats', {
-          y: 30,
-          opacity: 0,
-          stagger: 0.15,
-          duration: 0.8
-        }, '-=0.4');
+        .from('.culture-badge', { y: 60, opacity: 0, scale: 0.8, duration: 1, ease: 'back.out(1.7)' })
+        .from('.culture-header', { y: 80, opacity: 0, duration: 1.2 }, '-=0.6')
+        .from('.culture-subheader', { y: 50, opacity: 0, duration: 1 }, '-=0.8')
+        .from('.culture-content', { y: 40, opacity: 0, duration: 1.2 }, '-=0.6')
+        .from('.culture-stats', { y: 30, opacity: 0, stagger: 0.15, duration: 0.8 }, '-=0.4');
 
-      // Image entrance animation
-      gsap.fromTo(imageRef.current, 
-        {
-          scale: 0.6,
-          rotation: -15,
-          opacity: 0,
-          filter: 'blur(10px)'
-        },
-        {
-          scale: 1,
-          rotation: 0,
-          opacity: 1,
-          filter: 'blur(0px)',
-          duration: 1.5,
-          ease: 'back.out(1.2)',
-          delay: 0.8
-        }
+      // Image entrance
+      gsap.fromTo(
+        imageRef.current,
+        { scale: 0.6, rotation: -15, opacity: 0, filter: 'blur(10px)' },
+        { scale: 1, rotation: 0, opacity: 1, filter: 'blur(0px)', duration: 1.5, ease: 'back.out(1.2)', delay: 0.8 }
       );
 
-      // Continuous floating animation for image
-      gsap.to(imageRef.current, {
-        y: -20,
-        rotation: 5,
-        duration: 4,
-        yoyo: true,
-        repeat: -1,
-        ease: 'sine.inOut'
-      });
+      // Continuous floating animation
+      gsap.to(imageRef.current, { y: -20, rotation: 5, duration: 4, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
       // Ornament rotation
-      gsap.to(ornamentRef.current, {
-        rotation: 360,
-        duration: 20,
-        repeat: -1,
-        ease: 'none'
-      });
+      gsap.to(ornamentRef.current, { rotation: 360, duration: 20, repeat: -1, ease: 'none' });
 
-      // Particle floating animation
+      // Particle floating
       gsap.utils.toArray('.particle').forEach((particle, i) => {
         gsap.to(particle, {
           y: -100,
@@ -113,16 +68,17 @@ const Culture = () => {
         });
       });
 
-      // Scroll-triggered animations
+      // Scroll-triggered text animation
       ScrollTrigger.create({
         trigger: containerRef.current,
         start: 'top 80%',
         end: 'bottom 20%',
         animation: timelineRef.current,
-        toggleActions: 'play none none reverse'
+        toggleActions: 'play none none reverse',
+        once: true
       });
 
-      // Hover effects
+      // Hover effects on image
       const imageHover = gsap.timeline({ paused: true });
       imageHover.to(imageRef.current, {
         scale: 1.05,
@@ -132,9 +88,15 @@ const Culture = () => {
         ease: 'power2.out'
       });
 
-      imageRef.current?.addEventListener('mouseenter', () => imageHover.play());
-      imageRef.current?.addEventListener('mouseleave', () => imageHover.reverse());
+      const imgEl = imageRef.current;
+      imgEl?.addEventListener('mouseenter', () => imageHover.play());
+      imgEl?.addEventListener('mouseleave', () => imageHover.reverse());
 
+      // Cleanup hover listeners
+      return () => {
+        imgEl?.removeEventListener('mouseenter', () => imageHover.play());
+        imgEl?.removeEventListener('mouseleave', () => imageHover.reverse());
+      };
     }, containerRef);
 
     return () => {
@@ -145,23 +107,23 @@ const Culture = () => {
 
   return (
     <section className={styles.cultureSection} ref={containerRef}>
-      {/* Background Particles */}
-      <div className={styles.particlesContainer} ref={particlesRef}>
-        {Array.from({ length: 15 }, (_, i) => (
-          <div 
-            key={i}
+      {/* Particles */}
+      <div className={styles.particlesContainer}>
+        {particles.map(p => (
+          <div
+            key={p.id}
             className={`${styles.particle} particle`}
             style={{
-              '--delay': `${i * 0.3}s`,
-              '--x': `${Math.random() * 100}%`,
-              '--y': `${Math.random() * 100}%`,
-              '--size': `${Math.random() * 6 + 2}px`
+              '--delay': p.delay,
+              '--x': p.x,
+              '--y': p.y,
+              '--size': p.size
             }}
           />
         ))}
       </div>
 
-      {/* Decorative Ornament */}
+      {/* Ornament */}
       <div className={styles.ornamentContainer}>
         <div className={styles.ornament} ref={ornamentRef}>
           <div className={styles.ornamentInner}></div>
@@ -169,35 +131,31 @@ const Culture = () => {
       </div>
 
       <div className={styles.container}>
-        {/* Content Section */}
-        <div className={styles.contentWrapper} ref={textContentRef}>
+        {/* Text Content */}
+        <div className={styles.contentWrapper}>
           <div className={`${styles.badge} culture-badge`}>
             <span>Heritage & Tradition</span>
           </div>
-          
+
           <h2 className={`${styles.header} culture-header`}>
             <span className={styles.headerMain}>Our Culture</span>
             <span className={styles.headerSub}>& Heritage</span>
           </h2>
-          
-          <h3 className={`${styles.subheader} culture-subheader`}>
-            The Soul of Seven Sisters
-          </h3>
-          
+
+          <h3 className={`${styles.subheader} culture-subheader`}>The Soul of Seven Sisters</h3>
+
           <div className={styles.decorativeLine}>
             <div className={styles.lineLeft}></div>
             <div className={styles.centerOrb}></div>
             <div className={styles.lineRight}></div>
           </div>
-          
+
           <p className={`${styles.content} culture-content`}>
-            Rooted deeply in Assam's rich traditions, Seven Sisters embodies the spirit and 
-            passion of generations. Our commitment to craft and excellence reflects in every 
-            drop of our exquisite spirits, carrying forward the legacy of Northeast India's 
-            finest distillation heritage.
+            Rooted deeply in Assam's rich traditions, Seven Sisters embodies the spirit and passion of generations. Our
+            commitment to craft and excellence reflects in every drop of our exquisite spirits, carrying forward the
+            legacy of Northeast India's finest distillation heritage.
           </p>
 
-          {/* Heritage Stats */}
           <div className={styles.heritageStats}>
             <div className={`${styles.statItem} culture-stats`}>
               <div className={styles.statIcon}>🏛️</div>
@@ -225,9 +183,8 @@ const Culture = () => {
 
         {/* Image Section */}
         <div className={styles.imageWrapper}>
-          <div className={styles.imageContainer}>
+          <div ref={imageRef} className={styles.imageContainer}>
             <Image
-              ref={imageRef}
               className={styles.image}
               src="/japi.png"
               alt="Seven Sisters Culture and Heritage"

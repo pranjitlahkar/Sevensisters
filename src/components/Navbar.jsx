@@ -2,14 +2,15 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link'; // ✅ use Next.js Link
 import styles from '../css/navbar.module.css';
-import { Lato } from 'next/font/google'; // 1) switch to Lato [component-level]
+import { Lato } from 'next/font/google';
 
 const lato = Lato({
   subsets: ['latin'],
-  weight: ['400', '700'], // pick what you actually use
-  display: 'swap',        // good FOUT behavior
-  variable: '--font-lato' // enables CSS variable usage
+  weight: ['400', '700'],
+  display: 'swap',
+  variable: '--font-lato'
 });
 
 const Navbartwo = () => {
@@ -18,17 +19,16 @@ const Navbartwo = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef(null);
 
-  // Handle scroll effect for navbar transparency
+  // scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle click outside to close mobile menu
+  // click outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
@@ -50,7 +50,7 @@ const Navbartwo = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // Handle escape key
+  // escape key
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
@@ -58,7 +58,6 @@ const Navbartwo = () => {
         setActiveDropdown(null);
       }
     };
-
     document.addEventListener('keydown', handleEscape);
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
@@ -72,24 +71,8 @@ const Navbartwo = () => {
     setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
   };
 
-  const handleNavigation = (page, event) => {
-    event.preventDefault();
-    console.log(`Navigating to: ${page}`);
-    
-    // Close mobile menu and dropdown
-    setIsMobileMenuOpen(false);
-    setActiveDropdown(null);
-    
-    // Add your navigation logic here
-    // For example: router.push(`/${page}`);
-  };
-
-  const handleDropdownClick = (event) => {
-    event.preventDefault();
-  };
-
   return (
-    <nav 
+    <nav
       ref={navRef}
       className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''} ${lato.variable}`}
       role="navigation"
@@ -98,119 +81,104 @@ const Navbartwo = () => {
       <div className={styles.container}>
         {/* Brand Logo */}
         <div className={styles.brand}>
-          <a 
-            href="#" 
-            onClick={(e) => handleNavigation('home', e)}
-            className={styles.logoLink}
-            aria-label="Seven Sisters Home"
-          >
-            <Image 
-              src="/logo.png" 
-              alt="Seven Sisters Logo" 
+          <Link href="/" className={styles.logoLink} aria-label="Seven Sisters Home">
+            <Image
+              src="/logo.png"
+              alt="Seven Sisters Logo"
               width={70}
               height={70}
               className={styles.logo}
               priority
             />
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
         <ul className={styles.desktopNav} role="menubar">
           <li className={styles.navItem} role="none">
-            <a 
-              href="#" 
-              onClick={(e) => handleNavigation('home', e)}
-              className={styles.navLink}
-              role="menuitem"
-            >
+            <Link href="/" className={styles.navLink} role="menuitem">
               Home
-            </a>
+            </Link>
           </li>
-          
+
           <li className={`${styles.navItem} ${styles.hasDropdown}`} role="none">
-            <button 
+            <button
               className={`${styles.navLink} ${styles.dropdownTrigger}`}
-              onClick={handleDropdownClick}
               aria-haspopup="true"
               aria-expanded="false"
               role="menuitem"
             >
               Our Story
               <svg className={styles.dropdownIcon} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
               </svg>
             </button>
             <div className={styles.dropdownMenu} role="menu">
-              <a href="#" onClick={(e) => handleNavigation('about', e)} className={styles.dropdownItem} role="menuitem">
+              <Link href="/about" className={styles.dropdownItem} role="menuitem">
                 About Us
-              </a>
-              <a href="#" onClick={(e) => handleNavigation('history', e)} className={styles.dropdownItem} role="menuitem">
+              </Link>
+              <Link href="/history" className={styles.dropdownItem} role="menuitem">
                 History
-              </a>
-              <a href="#" onClick={(e) => handleNavigation('mission', e)} className={styles.dropdownItem} role="menuitem">
+              </Link>
+              <Link href="/mission" className={styles.dropdownItem} role="menuitem">
                 Mission & Vision
-              </a>
-              <a href="#" onClick={(e) => handleNavigation('leadership', e)} className={styles.dropdownItem} role="menuitem">
+              </Link>
+              <Link href="/leadership" className={styles.dropdownItem} role="menuitem">
                 Leadership Team
-              </a>
+              </Link>
             </div>
           </li>
-          
+
           <li className={styles.navItem} role="none">
-            <a 
-              href="#" 
-              onClick={(e) => handleNavigation('board', e)}
-              className={styles.navLink}
-              role="menuitem"
-            >
+            <Link href="/board" className={styles.navLink} role="menuitem">
               Board of Directors
-            </a>
+            </Link>
+
           </li>
-          
+
           <li className={`${styles.navItem} ${styles.hasDropdown}`} role="none">
-            <button 
+            <button
               className={`${styles.navLink} ${styles.dropdownTrigger}`}
-              onClick={handleDropdownClick}
               aria-haspopup="true"
               aria-expanded="false"
               role="menuitem"
             >
               Our Spirits
               <svg className={styles.dropdownIcon} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
               </svg>
             </button>
             <div className={styles.dropdownMenu} role="menu">
-              <a href="#" onClick={(e) => handleNavigation('premium', e)} className={styles.dropdownItem} role="menuitem">
+              <Link href="/premium" className={styles.dropdownItem} role="menuitem">
                 Premium Collection
-              </a>
-              <a href="#" onClick={(e) => handleNavigation('limited', e)} className={styles.dropdownItem} role="menuitem">
+              </Link>
+              <Link href="/limited" className={styles.dropdownItem} role="menuitem">
                 Limited Edition
-              </a>
-              <a href="#" onClick={(e) => handleNavigation('craft', e)} className={styles.dropdownItem} role="menuitem">
+              </Link>
+              <Link href="/craft" className={styles.dropdownItem} role="menuitem">
                 Craft Series
-              </a>
-              <a href="#" onClick={(e) => handleNavigation('awards', e)} className={styles.dropdownItem} role="menuitem">
-                Awards & Recognition
-              </a>
+              </Link>
+
             </div>
           </li>
-          
+
           <li className={styles.navItem} role="none">
-            <a 
-              href="#" 
-              onClick={(e) => handleNavigation('career', e)}
-              className={`${styles.navLink} ${styles.ctaLink}`}
-              role="menuitem"
-            >
-             Our brand 
-            </a>
+            <Link href="/brand" className={`${styles.navLink} ${styles.ctaLink}`} role="menuitem">
+              Our brand
+            </Link>
           </li>
         </ul>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className={`${styles.mobileMenuBtn} ${isMobileMenuOpen ? styles.active : ''}`}
           onClick={toggleMobileMenu}
           aria-label="Toggle mobile menu"
@@ -224,16 +192,10 @@ const Navbartwo = () => {
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div 
-          className={styles.overlay} 
-          onClick={() => setIsMobileMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
+      {isMobileMenuOpen && <div className={styles.overlay} onClick={() => setIsMobileMenuOpen(false)} aria-hidden="true" />}
 
       {/* Mobile Navigation */}
-      <div 
+      <div
         id="mobile-menu"
         className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}
         role="menu"
@@ -242,110 +204,104 @@ const Navbartwo = () => {
         <div className={styles.mobileMenuContent}>
           <ul className={styles.mobileNavList}>
             <li className={styles.mobileNavItem}>
-              <a 
-                href="#" 
-                onClick={(e) => handleNavigation('home', e)}
-                className={styles.mobileNavLink}
-                role="menuitem"
-              >
+              <Link href="/" className={styles.mobileNavLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                 Home
-              </a>
+              </Link>
             </li>
-            
+
             <li className={styles.mobileNavItem}>
-              <button 
+              <button
                 className={styles.mobileDropdownBtn}
                 onClick={() => toggleMobileDropdown('story')}
                 aria-expanded={activeDropdown === 'story'}
                 aria-controls="mobile-story-dropdown"
               >
                 <span>Our Story</span>
-                <svg 
+                <svg
                   className={`${styles.mobileDropdownIcon} ${activeDropdown === 'story' ? styles.rotated : ''}`}
-                  viewBox="0 0 20 20" 
+                  viewBox="0 0 20 20"
                   fill="currentColor"
                   aria-hidden="true"
                 >
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </button>
-              <div 
+              <div
                 id="mobile-story-dropdown"
                 className={`${styles.mobileDropdown} ${activeDropdown === 'story' ? styles.expanded : ''}`}
                 role="menu"
               >
-                <a href="#" onClick={(e) => handleNavigation('about', e)} className={styles.mobileSubLink} role="menuitem">
+                <Link href="/about" className={styles.mobileSubLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                   About Us
-                </a>
-                <a href="#" onClick={(e) => handleNavigation('history', e)} className={styles.mobileSubLink} role="menuitem">
+                </Link>
+                <Link href="/history" className={styles.mobileSubLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                   History
-                </a>
-                <a href="#" onClick={(e) => handleNavigation('mission', e)} className={styles.mobileSubLink} role="menuitem">
+                </Link>
+                <Link href="/mission" className={styles.mobileSubLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                   Mission & Vision
-                </a>
-                <a href="#" onClick={(e) => handleNavigation('leadership', e)} className={styles.mobileSubLink} role="menuitem">
+                </Link>
+                <Link href="/leadership" className={styles.mobileSubLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                   Leadership Team
-                </a>
+                </Link>
               </div>
             </li>
-            
+
             <li className={styles.mobileNavItem}>
-              <a 
-                href="#" 
-                onClick={(e) => handleNavigation('board', e)}
-                className={styles.mobileNavLink}
-                role="menuitem"
-              >
+              <Link href="/board" className={styles.mobileNavLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                 Board of Directors
-              </a>
+              </Link>
+
             </li>
-            
+
             <li className={styles.mobileNavItem}>
-              <button 
+              <button
                 className={styles.mobileDropdownBtn}
                 onClick={() => toggleMobileDropdown('spirits')}
                 aria-expanded={activeDropdown === 'spirits'}
                 aria-controls="mobile-spirits-dropdown"
               >
                 <span>Our Spirits</span>
-                <svg 
+                <svg
                   className={`${styles.mobileDropdownIcon} ${activeDropdown === 'spirits' ? styles.rotated : ''}`}
-                  viewBox="0 0 20 20" 
+                  viewBox="0 0 20 20"
                   fill="currentColor"
                   aria-hidden="true"
                 >
-                  <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </button>
-              <div 
+              <div
                 id="mobile-spirits-dropdown"
                 className={`${styles.mobileDropdown} ${activeDropdown === 'spirits' ? styles.expanded : ''}`}
                 role="menu"
               >
-                <a href="#" onClick={(e) => handleNavigation('premium', e)} className={styles.mobileSubLink} role="menuitem">
+                <Link href="/premium" className={styles.mobileSubLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                   Premium Collection
-                </a>
-                <a href="#" onClick={(e) => handleNavigation('limited', e)} className={styles.mobileSubLink} role="menuitem">
+                </Link>
+                <Link href="/limited" className={styles.mobileSubLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                   Limited Edition
-                </a>
-                <a href="#" onClick={(e) => handleNavigation('craft', e)} className={styles.mobileSubLink} role="menuitem">
+                </Link>
+                <Link href="/craft" className={styles.mobileSubLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                   Craft Series
-                </a>
-                <a href="#" onClick={(e) => handleNavigation('awards', e)} className={styles.mobileSubLink} role="menuitem">
+                </Link>
+                <Link href="/awards" className={styles.mobileSubLink} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                   Awards & Recognition
-                </a>
+                </Link>
               </div>
             </li>
-            
+
             <li className={styles.mobileNavItem}>
-              <a 
-                href="#" 
-                onClick={(e) => handleNavigation('career', e)}
-                className={`${styles.mobileNavLink} ${styles.mobileCta}`}
-                role="menuitem"
-              >
+              <Link href="/career" className={`${styles.mobileNavLink} ${styles.mobileCta}`} role="menuitem" onClick={() => setIsMobileMenuOpen(false)}>
                 Career
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

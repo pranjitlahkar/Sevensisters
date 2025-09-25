@@ -1,23 +1,22 @@
-'use client';
-// app/products/[slug]/page.jsx
+import { products } from "../../../data/products";
+import ProductShowcaseWrapper from "../../../components/ProductShowcaseWrapper";
 
-import dynamic from 'next/dynamic';
-import { products } from '../../../data/products';
+// Generate static params for all products
+export async function generateStaticParams() {
+  return products.map((product) => ({
+    slug: product.slug,
+  }));
+}
 
-// Dynamically import the UI component
-const ProductShowcase = dynamic(() => import('../../../components/ProductShowcase'), {
-  ssr: false,
-});
+// ✅ Make page async and await params
+export default async function ProductPage({ params }) {
+  const { slug } = await params; // 🔑 await params here
 
-export default function ProductPage({ params }) {
-  const { slug } = params;
-
-  // Find product by slug
   const product = products.find((p) => p.slug === slug);
 
   if (!product) {
-    return <h1 style={{ padding: '2rem' }}>❌ Product not found</h1>;
+    return null; // Will trigger not-found.jsx if you add one
   }
 
-  return <ProductShowcase product={product} />;
+  return <ProductShowcaseWrapper product={product} />;
 }

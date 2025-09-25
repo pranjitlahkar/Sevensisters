@@ -2,32 +2,16 @@ export const directors = [
   {
     slug: "Anurag-Bharadwaj",
     name: "Anurag Bharadwaj Borah",
-    position: "Chairman & Managing Director",
+    position: "Director",
     image: "/director1.jpg",
-    education: "Btech, Guwahati University",
+    education: "",
     awards: "",
     specialization: "Corporate Strategy & Leadership",
     philosophy:
       "Leading with integrity and innovation to create lasting value for all stakeholders.",
-    note: `Dear Valued Stakeholders,
+    note: `My mother established Seven Sisters Trade and Distilleries Pvt. Ltd., and as the next generation, me and my sister are determined to carry her legacy forward. I am committed to upholding the reputation she built while expanding the business beyond being a production partner, with a vision to establish our own brands in the future.
 
-    It is with immense pride and gratitude that I address you as the Chairman and Managing Director of Seven Sisters Trade & Distilleries Pvt. Ltd. Our journey, which began in 1998, has been one of unwavering commitment to excellence, innovation, and the rich heritage of premium spirits.
-
-    From our humble beginnings in the heart of Assam, we have grown into a distinguished name in the spirits industry, not merely through expansion, but through an uncompromising dedication to quality and craftsmanship. Each bottle that bears our name carries within it the essence of our values: integrity, tradition, and the relentless pursuit of perfection.
-
-    Our success is rooted in three fundamental pillars that guide every decision we make. First, our commitment to quality remains absolute – we source only the finest ingredients and employ time-tested methods refined through decades of expertise. Second, our embrace of innovation ensures we remain at the forefront of industry developments while honoring traditional distillation techniques. Finally, our responsibility to sustainability drives us to create value not just for our shareholders, but for our communities and the environment.
-
-    The challenges of today's global marketplace demand visionary leadership and adaptive strategies. We have consistently demonstrated our ability to navigate complex market dynamics while maintaining our core principles. Our diverse portfolio of premium spirits reflects our understanding of evolving consumer preferences and our commitment to meeting the highest international standards.
-
-    Looking ahead, I envision Seven Sisters continuing to set new benchmarks in the industry. We are investing in state-of-the-art facilities, expanding our research and development capabilities, and fostering partnerships that will drive sustainable growth. Our focus on digital transformation and operational excellence positions us well for the opportunities that lie ahead.
-
-    I extend my heartfelt appreciation to our dedicated team, whose passion and expertise make our vision a reality. To our valued customers, thank you for your trust and loyalty. To our business partners, your collaboration strengthens our collective success. And to our shareholders, your continued confidence enables us to pursue ambitious goals with determination.
-
-    As we write the next chapter of our story, I am confident that Seven Sisters will continue to embody the spirit of excellence that has defined us for over two decades. Together, we will create a legacy that honors our past while embracing the promise of a bright future.
-
-    With warm regards and best wishes,
-
-With warm regards and best wishes,`,
+I strongly believe in the values my mother passed on-empowering women in the workforce, promoting responsible drinking, and embracing sustainable packaging and production. By blending modernity with tradition, I look forward to take every member of our team towards a prosperous and progressive future.`,
     signature: "Anurag Bharadwaj Borah",
     date: "January 2024",
     achievements: [
@@ -42,17 +26,47 @@ With warm regards and best wishes,`,
   {
     slug: "Queen-Hazarika",
     name: "Queen Hazarika",
-    position: "Executive Director",
+    position: "Owner & Managing Director",
     image: "/director2.jpg",
-    education: "LLB, Delhi University",
+    education: " ",
     awards: "Women in Leadership Award 2022",
     specialization: "Corporate Law & Governance",
     philosophy:
       "Ensuring transparency, governance, and legal compliance in every step we take.",
-    note: `Dear Partners,
+    note: `Managing Director’s Note
 
-My vision is to ensure that our company continues to uphold the highest standards of governance...`,
+For over two decades, I have dedicated myself to the art and craft of distilling, building a company rooted in trust, sustainability, and the empowerment of women. With pride, I lead a team where 80% of our workforce are women—strong, skilled, and passionate individuals who inspire excellence every day.
+
+Today, I am thrilled to unveil the next milestone in our journey: Queens Crown, our very own whiskey brand in the luxury segment. More than just a spirit, Queens Crown is a tribute to elegance, strength, and craftsmanship—an ode to women who reign with grace and power.
+
+This launch marks not only the culmination of years of dedication but also the beginning of a new legacy. With Queens Crown, we step proudly into the Indian market, offering a whiskey that embodies both heritage and luxury.`,
     signature: "Queen Hazarika",
+    date: "February 2024",
+    achievements: [
+      "Implemented robust corporate governance frameworks",
+      "Led CSR initiatives impacting 50,000+ lives",
+    ],
+    vision:
+      "To build a socially responsible and legally compliant enterprise for future generations.",
+  },
+  {
+    slug: "Prartthana-Borah",
+    name: "Prartthana Borah",
+    position: "Director",
+    image: "/images/director/director.jpeg",
+    education: " ",
+    awards: "Women in Leadership Award 2022",
+    specialization: "Corporate Law & Governance",
+    philosophy:
+      "Ensuring transparency, governance, and legal compliance in every step we take.",
+    note: `As the second generation stepping into this business, I am proud to carry forward my mother’s remarkable legacy in the world of bottling and distilling. What she built with passion, resilience, and vision has become a symbol of trust, sustainability, and women empowerment—and I am determined to take it to new horizons.
+
+In a male-dominated industry, I see not obstacles but opportunities: to expand, innovate, and prove that women can lead with strength and vision. With our predominantly women-driven workforce, I aim to amplify empowerment while shaping a truly global presence for our brands.
+
+It is with immense pride that I now lead our expansion with the launch of Queens Crown: a whiskey brand in the luxury segment that embodies our legacy of excellence, while charting a bold new future. Queens Crown is more than just a spirit; it is a statement of elegance, strength, and empowerment.
+
+This is not just the next chapter of our company, it is the beginning of a new era, where legacy and innovation unite to leave a mark on the world stage.`,
+    signature: "Prartthana Borah",
     date: "February 2024",
     achievements: [
       "Implemented robust corporate governance frameworks",

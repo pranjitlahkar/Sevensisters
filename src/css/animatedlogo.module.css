@@ -1,0 +1,156 @@
+.logoBg {
+  --rich-gold: #C3A66A;
+  --bronze: #A07837;
+  --champagne: #F7EFE2;
+  --pearl: #fff;
+  --deep-charcoal: #332d29;
+  --midnight: #0D0D0D;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  min-height: 350px;
+  width: 100%;
+  padding: 3.5rem 1.5rem 2.5rem 1.5rem;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.logoBg.small { min-height: 120px; padding-top: 1.4rem; }
+.logoBg.medium { min-height: 210px; padding-top: 2.2rem; }
+.logoBg.large { min-height: 350px; }
+
+.bgBlend {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(195, 166, 106, 0.09) 0%, transparent 65%),
+    linear-gradient(165deg, var(--midnight) 0%, #222 60%, var(--deep-charcoal) 100%),
+    linear-gradient(0deg, transparent 60%, var(--champagne) 100%);
+  opacity: 0.85;
+  /* Creates smooth blending on any bg and soft vignette at bottom */
+}
+
+/* Logo gold subtle glow */
+.logoGlow {
+  content: '';
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 330px;
+  height: 160px;
+  background: radial-gradient(ellipse at 50% 55%, #c3a66a33 0%, #fff0 75%);
+  border-radius: 60%;
+  z-index: 2;
+  filter: blur(16px);
+  opacity: 0.1;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+/* Logo Image Styling */
+.logoImgWrapper {
+  position: relative;
+  z-index: 3;
+  width: 155px;
+  height: 155px;
+  margin-bottom: 1.3rem;
+  border-radius: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #fff1, #f7efe2 25%, #c3a66a36 89%);
+  box-shadow: 0 6px 40px #c3a66a12, 0 2px 12px #332d2922;
+}
+
+.logoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 80px;
+  filter: drop-shadow(0 1px 20px #c3a66a22);
+  background: #fff0;
+  transition: filter 0.3s;
+}
+
+/* Main Heading */
+.logoHeading {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-weight: 900;
+  margin: 0 0 0.18em 0;
+  letter-spacing: 0.1em;
+  background: linear-gradient(
+    92deg,
+    var(--rich-gold) 18%,
+    var(--bronze) 70%,
+    var(--pearl) 95%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  line-height: 1.04;
+  z-index: 5;
+  text-shadow:
+    0 2px 18px rgba(195,166,106,0.02),
+    0 1px 0 #fff8;
+}
+
+.logoTagline {
+  font-size: 1.11rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--bronze);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-top: 0.24em;
+  display: block;
+  z-index: 5;
+}
+
+.logoSubtitle {
+  font-size: 0.97rem;
+  color: #B3A393;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.06em;
+  font-style: italic;
+  margin-top: 0.18rem;
+  display: block;
+  z-index: 5;
+}
+
+/* Responsiveness */
+@media (max-width: 640px) {
+  .logoBg { padding-top: 1.2rem; padding-bottom: 0.8rem; }
+  .logoImgWrapper { width: 85px; height: 85px; }
+  .logoHeading { font-size: 1.2rem; }
+  .logoTagline { font-size: 0.89rem; }
+  .logoSubtitle { font-size: 0.8rem; }
+  .logoGlow { width: 110px; height: 60px; top: 23px; }
+}
+@media (max-width: 400px) {
+  .logoHeading { font-size: 0.95rem; }
+  .logoTagline { font-size: 0.71rem; }
+  .logoSubtitle { font-size: 0.64rem; }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .logoBg {
+    background: linear-gradient(150deg, #0d0d0d 0%, #232021 80%);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .logoGlow,
+  .logoImg {
+    transition: none !important;
+    animation: none !important;
+  }
+}

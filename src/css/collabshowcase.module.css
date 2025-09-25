@@ -22,6 +22,7 @@
   padding: 0 1.5rem;
   text-align: center;
 }
+
 .badge {
   display: inline-block;
   padding: .45rem 1rem;
@@ -34,19 +35,129 @@
   margin-bottom: 1rem;
   box-shadow: 0 8px 28px rgba(195,166,106,.28);
 }
+
 .title {
   margin: 0 0 .5rem;
+  -webkit-text-stroke: 0.5px  #0f0f0f;
   font-size: clamp(2rem, 4.5vw, 3.2rem);
   font-weight: 900;
-  color: var(--deep-charcoal);
+  color: var(--rich-gold);
   letter-spacing: .02em;
+  
 }
+
 .subtitle {
   margin: 0 auto;
   max-width: 720px;
   color: var(--satin-taupe);
   font-size: clamp(1rem, 2.4vw, 1.15rem);
   line-height: 1.7;
+}
+
+/* ===== PREMIUM ANIMATED DIVIDER ===== */
+.premiumDivider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto 0;
+  max-width: 400px;
+  position: relative;
+  animation: dividerReveal 2s ease-out 0.5s both;
+  padding-bottom: 1rem;
+}
+
+@keyframes dividerReveal {
+  0% { 
+    opacity: 0; 
+    transform: scaleX(0);
+  }
+  100% { 
+    opacity: 1; 
+    transform: scaleX(1);
+  }
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1.5px;
+  background: var(--gold-grad);
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.dividerLine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.8), 
+    transparent
+  );
+  animation: lineShimmer 4s ease-in-out infinite;
+}
+
+@keyframes lineShimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.centerCircle {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  background: var(--gold-grad);
+  border-radius: 50%;
+  margin: 0 25px;
+  box-shadow: 
+    0 0 20px rgba(195, 166, 106, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  animation: circleGlow 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes circleGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgba(195, 166, 106, 0.4),
+      inset 0 1px 2px rgba(255, 255, 255, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 
+      0 0 30px rgba(195, 166, 106, 0.6),
+      0 0 40px rgba(212, 175, 55, 0.3),
+      inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    transform: scale(1.15);
+  }
+}
+
+.circleInner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 4px;
+  background: var(--pearl-white);
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: innerPulse 2s ease-in-out infinite;
+}
+
+@keyframes innerPulse {
+  0%, 100% { 
+    opacity: 0.9; 
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.3);
+  }
 }
 
 /* ===== Companies ===== */
@@ -57,6 +168,7 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .companyRow {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
@@ -74,6 +186,7 @@
   position: relative;
   padding: 1.2rem;
 }
+
 .logoTag {
   position: absolute;
   top: 1rem;
@@ -88,13 +201,35 @@
   box-shadow: 0 8px 24px rgba(0,0,0,.08);
   z-index: 2;
 }
-.logoImg { object-fit: contain; width: 28px; height: 28px; }
-.logoName { font-weight: 800; color: var(--deep-charcoal); letter-spacing: .02em; }
 
-.heroWrap { position: relative; border-radius: 16px; overflow: hidden; }
-.brandImage { width: 100%; height: auto; display: block; object-fit: cover; }
+.logoImg { 
+  object-fit: contain; 
+  width: 28px; 
+  height: 28px; 
+}
+
+.logoName { 
+  font-weight: 800; 
+  color: var(--deep-charcoal); 
+  letter-spacing: .02em; 
+}
+
+.heroWrap { 
+  position: relative; 
+  border-radius: 16px; 
+  overflow: hidden; 
+}
+
+.brandImage { 
+  width: 100%; 
+  height: auto; 
+  display: block; 
+  object-fit: cover; 
+}
+
 .imageGlow {
-  position: absolute; inset: 0;
+  position: absolute; 
+  inset: 0;
   background: radial-gradient(60% 60% at 20% 15%, rgba(195,166,106,.15), transparent 60%),
               radial-gradient(60% 60% at 80% 85%, rgba(160,120,55,.12), transparent 60%);
   pointer-events: none;
@@ -105,15 +240,26 @@
 .brandContent {
   padding: 1.5rem 1.8rem;
 }
+
 .brandTitle {
-  margin: 0 0 .5rem; color: var(--deep-charcoal);
-  font-size: 1.4rem; font-weight: 900; letter-spacing: .01em;
+  margin: 0 0 .5rem; 
+  color: var(--deep-charcoal);
+  font-size: 1.4rem; 
+  font-weight: 900; 
+  letter-spacing: .01em;
 }
+
 .brandBlurb {
-  margin: 0 0 .5rem; color: var(--warm-bronze); font-weight: 700;
+  margin: 0 0 .5rem; 
+  color: var(--warm-bronze); 
+  font-weight: 700;
 }
+
 .brandHistory {
-  margin: 0 0 1.2rem; color: var(--deep-charcoal); opacity: .9; line-height: 1.6;
+  margin: 0 0 1.2rem; 
+  color: var(--deep-charcoal); 
+  opacity: .9; 
+  line-height: 1.6;
 }
 
 /* Product cards */
@@ -122,6 +268,7 @@
   grid-template-columns: repeat(3, minmax(0,1fr));
   gap: 1rem;
 }
+
 .productCard {
   background: rgba(255,255,255,.85);
   border: 1px solid rgba(195,166,106,.22);
@@ -130,19 +277,43 @@
   box-shadow: 0 10px 30px rgba(195,166,106,.16);
   transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
 }
+
 .productCard:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 44px rgba(195,166,106,.26);
   border-color: var(--rich-gold);
 }
-.cardImageWrap { aspect-ratio: 16/10; overflow: hidden; }
-.cardImage { width: 100%; height: 100%; object-fit: cover; display: block; }
-.cardBody { padding: .9rem; display: grid; gap: .6rem; }
-.productName { margin: 0; font-size: 1rem; color: var(--deep-charcoal); font-weight: 800; }
+
+.cardImageWrap { 
+  aspect-ratio: 16/10; 
+  overflow: hidden; 
+}
+
+.cardImage { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block; 
+}
+
+.cardBody { 
+  padding: .9rem; 
+  display: grid; 
+  gap: .6rem; 
+}
+
+.productName { 
+  margin: 0; 
+  font-size: 1rem; 
+  color: var(--deep-charcoal); 
+  font-weight: 800; 
+}
 
 .readMore {
   justify-self: start;
-  display: inline-flex; align-items: center; gap: .5rem;
+  display: inline-flex; 
+  align-items: center; 
+  gap: .5rem;
   padding: .5rem .85rem;
   border-radius: 10px;
   border: none;
@@ -153,21 +324,99 @@
   letter-spacing: .02em;
   box-shadow: 0 10px 30px rgba(195,166,106,.35);
   transition: transform .15s ease, box-shadow .2s ease;
+  text-decoration: none;
 }
-.readMore:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(195,166,106,.45); }
-.arrow { width: 18px; height: 18px; }
+
+.readMore:hover { 
+  transform: translateY(-2px); 
+  box-shadow: 0 16px 40px rgba(195,166,106,.45); 
+}
+
+.arrow { 
+  width: 18px; 
+  height: 18px; 
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .companyRow { grid-template-columns: 1fr; }
-  .cardsGrid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .companyRow { 
+    grid-template-columns: 1fr; 
+  }
+  .cardsGrid { 
+    grid-template-columns: repeat(2, minmax(0,1fr)); 
+  }
 }
+
+@media (max-width: 768px) {
+  .premiumDivider {
+    max-width: 300px;
+    margin: 1.5rem auto 0;
+  }
+  
+  .centerCircle {
+    width: 12px;
+    height: 12px;
+    margin: 0 20px;
+  }
+  
+  .circleInner {
+    width: 3px;
+    height: 3px;
+  }
+}
+
 @media (max-width: 560px) {
-  .cardsGrid { grid-template-columns: 1fr; }
-  .collabSection { padding: 4rem 0; }
+  .cardsGrid { 
+    grid-template-columns: 1fr; 
+  }
+  .collabSection { 
+    padding: 4rem 0; 
+  }
+  
+  .premiumDivider {
+    max-width: 250px;
+    margin: 1rem auto 0;
+  }
+  
+  .centerCircle {
+    width: 10px;
+    height: 10px;
+    margin: 0 15px;
+  }
+  
+  .circleInner {
+    width: 2px;
+    height: 2px;
+  }
+  
+  .dividerLine {
+    height: 1px;
+  }
 }
 
 /* Accessibility preferences */
 @media (prefers-reduced-motion: reduce) {
-  .productCard, .readMore { transition: none !important; }
+  .productCard, 
+  .readMore,
+  .premiumDivider,
+  .dividerLine::before,
+  .centerCircle,
+  .circleInner { 
+    animation: none !important;
+    transition: none !important; 
+  }
+  
+  .premiumDivider {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  
+  .centerCircle {
+    transform: scale(1);
+  }
+  
+  .circleInner {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
