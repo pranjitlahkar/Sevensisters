@@ -186,7 +186,7 @@ const Culture = () => {
           <div ref={imageRef} className={styles.imageContainer}>
             <Image
               className={styles.image}
-              src="/japi.png"
+              src="/images/assets/japi.png"
               alt="Seven Sisters Culture and Heritage"
               width={500}
               height={500}

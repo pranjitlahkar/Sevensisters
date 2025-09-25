@@ -70,7 +70,7 @@ const Navbartwo = () => {
         <div className={styles.brand}>
           <Link href="/" className={styles.logoLink} aria-label="Seven Sisters Home">
             <Image
-              src="/logo.png"
+              src="/images/logo/logo.png"
               alt="Seven Sisters Logo"
               width={70}
               height={70}
@@ -134,7 +134,7 @@ const Navbartwo = () => {
             </Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/gallery" className={styles.navLink}>
+            <Link href="/Gallery" className={styles.navLink}>
               Gallery
             </Link>
           </li>

@@ -68,7 +68,7 @@ const Footer = () => {
                 <div className={styles.logoContainer}>
                   <div className={styles.logoWrapper}>
                     <Image 
-                      src="/logo.png" 
+                      src="/images/logo/logo.png" 
                       alt="Seven Sisters Logo" 
                       width={80}
                       height={80}
