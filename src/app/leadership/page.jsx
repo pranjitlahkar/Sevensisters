@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div>
        <DirectorsPage/>
-        <ManagerialSection/>
+        {/* <ManagerialSection/> */}
     </div>
   )
 }
