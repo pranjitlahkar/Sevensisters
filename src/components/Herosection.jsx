@@ -1,12 +1,11 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useRouter } from "next/navigation";
 import Image from 'next/image';
 import styles from '../css/herosection.module.css';
 import { Lato } from 'next/font/google'; // 1) switch to Lato [component-level]
-import FeatureCard from './FeatureCard';
-import AnimatedLogo from './AnimatedLogo';
-import SliderComponent from './SliderComponent';
+
 
 const lato = Lato({
     subsets: ['latin'],
@@ -25,6 +24,8 @@ const HeroSection = () => {
     const [mounted, setMounted] = useState(false);
     const [viewportHeight, setViewportHeight] = useState(0);
     const heroRef = useRef(null);
+    const router = useRouter();
+    
 
     useEffect(() => {
         setMounted(true);
@@ -67,6 +68,7 @@ const HeroSection = () => {
     };
 
     const handleCTAClick = (action) => {
+        router.push(`/about`);
         console.log(`CTA clicked: ${action}`);
     };
 
@@ -153,15 +155,7 @@ const HeroSection = () => {
 
                         {/* Call to Actions */}
                         <div className={styles.actions}>
-                            <button
-                                className={`${styles.btn} ${styles.primary}`}
-                                onClick={() => handleCTAClick('explore')}
-                            >
-                                <span>Explore Collection</span>
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z" />
-                                </svg>
-                            </button>
+                            
 
                             <button
                                 className={`${styles.btn} ${styles.secondary}`}

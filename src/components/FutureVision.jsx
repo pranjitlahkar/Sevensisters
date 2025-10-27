@@ -50,9 +50,14 @@ const FutureVision = () => {
             in the luxury segment under the prestigious name <strong>Queens Crown</strong>.
             Backed by state-of-the-art infrastructure and a legacy of trust.
           </p>
-          <div className={styles.badge}>
+         <a
+            href="http://queenbarrels.vercel.app"
+            className={styles.badge}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Blending Excellence with Reliability
-          </div>
+          </a>
         </div>
       </div>
     </section>

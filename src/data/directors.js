@@ -29,7 +29,7 @@ I strongly believe in the values my mother passed on-empowering women in the wor
     position: "Owner & Managing Director",
     image: "/images/director/director2.jpg",
     education: " ",
-    awards: "Women in Leadership Award 2022",
+    awards: "",
     specialization: "Corporate Law & Governance",
     philosophy:
       "Ensuring transparency, governance, and legal compliance in every step we take.",
@@ -55,7 +55,7 @@ This launch marks not only the culmination of years of dedication but also the b
     position: "Director",
     image: "/images/director/director.jpeg",
     education: " ",
-    awards: "Women in Leadership Award 2022",
+    awards: "",
     specialization: "Corporate Law & Governance",
     philosophy:
       "Ensuring transparency, governance, and legal compliance in every step we take.",

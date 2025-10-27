@@ -407,7 +407,7 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-            <a href="/brand" className="navbar-navLink navbar-ctaLink">Our Brand</a>
+            <a href="http://queenbarrels.vercel.app" className="navbar-navLink navbar-ctaLink">Our Brand</a>
           </nav>
 
           {/* --- Mobile Navigation --- */}
@@ -459,7 +459,7 @@ export default function Navbar() {
                  </li>
                ))}
                 <li>
-                  <a href="/brand" className="navbar-mobileNavLink navbar-mobileCta" onClick={closeMenu}>
+                  <a href="http://queenbarrels.vercel.app" className="navbar-mobileNavLink navbar-mobileCta" onClick={closeMenu}>
                     Our Brand
                   </a>
                 </li>
