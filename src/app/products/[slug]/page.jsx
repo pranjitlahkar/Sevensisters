@@ -1,6 +1,10 @@
 import { products } from "../../../data/products";
 import ProductShowcaseWrapper from "../../../components/ProductShowcaseWrapper";
 
+
+export const metadata = {
+  title: 'Products',
+};
 // Generate static params for all products
 export async function generateStaticParams() {
   return products.map((product) => ({

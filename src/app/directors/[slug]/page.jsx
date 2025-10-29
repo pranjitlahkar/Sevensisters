@@ -8,6 +8,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { directors } from '@/data/directors';
 import styles from './board.module.css';
 
+export const metadata = {
+  title: 'Directors',
+};
+
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
