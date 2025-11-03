@@ -26,7 +26,6 @@ const images = [
     { id: 17, src: "/images/gallery/team.jpg", category: "Team", title: "Rich Legacy" },
     { id: 18, src: "/images/gallery/team2.jpg", category: "Team", title: "Rich Legacy" },
     { id: 19, src: "/images/gallery/team3.jpg", category: "Team", title: "Rich Legacy" },
-    { id: 20, src: "/images/gallery/team4.jpg", category: "Team", title: "Rich Legacy" },
     { id: 21, src: "/images/gallery/team5.jpg", category: "Team", title: "Rich Legacy" },
     { id: 22, src: "/images/gallery/team6.jpg", category: "Team", title: "Rich Legacy" },
 

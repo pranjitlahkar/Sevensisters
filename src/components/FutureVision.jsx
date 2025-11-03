@@ -51,7 +51,7 @@ const FutureVision = () => {
             Backed by state-of-the-art infrastructure and a legacy of trust.
           </p>
          <a
-            href="http://queenbarrels.vercel.app"
+            href="https://www.queenbarrels.com"
             className={styles.badge}
             target="_blank"
             rel="noopener noreferrer"

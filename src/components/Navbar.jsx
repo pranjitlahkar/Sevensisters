@@ -379,7 +379,7 @@ export default function Navbar() {
         <div className="navbar-container">
           <a href="/" className="navbar-brandLink" aria-label="Seven Sisters Home" onClick={closeMenu}>
             {/* Make sure this path is correct for your project */}
-            <img src="/images/logo/logo.png" alt="Seven Sisters Logo" className="navbar-logo" />
+            <img src="/images/logo/logo.png" alt="Best distillery in Northeast India" className="navbar-logo" />
           </a>
 
           {/* --- Desktop Navigation --- */}
@@ -407,7 +407,7 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
-            <a href="http://queenbarrels.vercel.app" className="navbar-navLink navbar-ctaLink">Our Brand</a>
+            <a href="https://www.queenbarrels.com" className="navbar-navLink navbar-ctaLink">Our Brand</a>
           </nav>
 
           {/* --- Mobile Navigation --- */}
@@ -459,7 +459,7 @@ export default function Navbar() {
                  </li>
                ))}
                 <li>
-                  <a href="http://queenbarrels.vercel.app" className="navbar-mobileNavLink navbar-mobileCta" onClick={closeMenu}>
+                  <a href="https://www.queenbarrels.com" className="navbar-mobileNavLink navbar-mobileCta" onClick={closeMenu}>
                     Our Brand
                   </a>
                 </li>
